@@ -1,0 +1,135 @@
+{
+  "site": {
+    "title": "Cyclone Ditwah Missing Persons Registry",
+    "subtitle": "Help reunite families affected by Cyclone Ditwah in Sri Lanka",
+    "tagline": "370+ people are still missing. Your help can reunite families."
+  },
+  "nav": {
+    "home": "Home",
+    "search": "Search",
+    "report": "Report Missing",
+    "found": "Report Found",
+    "about": "About"
+  },
+  "stats": {
+    "missing": "Missing",
+    "found": "Found",
+    "sightings": "Sightings Reported"
+  },
+  "home": {
+    "hero": "Missing Persons Registry",
+    "heroSubtitle": "Cyclone Ditwah - Sri Lanka",
+    "searchPlaceholder": "Search by name...",
+    "reportMissing": "Report Missing Person",
+    "reportFound": "Report Found/Sighting",
+    "viewAll": "View All Missing Persons"
+  },
+  "search": {
+    "title": "Search Missing Persons",
+    "filters": "Filters",
+    "district": "District",
+    "allDistricts": "All Districts",
+    "status": "Status",
+    "allStatuses": "All Statuses",
+    "missing": "Missing",
+    "found": "Found",
+    "age": "Age Range",
+    "results": "results found",
+    "noResults": "No missing persons found matching your criteria",
+    "lastSeen": "Last seen",
+    "age_years": "years old"
+  },
+  "report": {
+    "title": "Report Missing Person",
+    "subtitle": "Please provide as much detail as possible to help locate this person",
+    "personDetails": "Person Details",
+    "fullName": "Full Name",
+    "age": "Age",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "photo": "Photo",
+    "uploadPhoto": "Upload Photo",
+    "physicalDescription": "Physical Description",
+    "physicalDescriptionHint": "Height, weight, clothing, distinguishing features...",
+    "lastKnownLocation": "Last Known Location",
+    "location": "Location/Address",
+    "district": "District",
+    "selectDistrict": "Select District",
+    "landmark": "Nearby Landmark",
+    "lastSeenDate": "Date Last Seen",
+    "contactInfo": "Your Contact Information",
+    "yourName": "Your Name",
+    "yourPhone": "Your Phone Number",
+    "yourEmail": "Your Email (optional)",
+    "relationship": "Relationship to Missing Person",
+    "submit": "Submit Report",
+    "submitting": "Submitting...",
+    "success": "Report submitted successfully. Our team will review it shortly.",
+    "error": "Error submitting report. Please try again."
+  },
+  "found": {
+    "title": "Report Found Person / Sighting",
+    "selectPerson": "Select the missing person you found or saw",
+    "sightingDetails": "Sighting Details",
+    "whereFound": "Where did you see this person?",
+    "whenSeen": "When did you see this person?",
+    "description": "Additional details about the sighting",
+    "yourInfo": "Your Contact Information",
+    "submit": "Submit Sighting Report",
+    "success": "Sighting report submitted. Thank you for your help!",
+    "markAsFound": "Mark as Found",
+    "foundLocation": "Where was the person found?",
+    "foundDate": "When was the person found?"
+  },
+  "person": {
+    "status": "Status",
+    "missing": "Missing",
+    "found": "Found",
+    "lastSeen": "Last Seen",
+    "district": "District",
+    "age": "Age",
+    "gender": "Gender",
+    "description": "Physical Description",
+    "contact": "Contact Family",
+    "share": "Share",
+    "shareWhatsApp": "Share on WhatsApp",
+    "shareFacebook": "Share on Facebook",
+    "copyLink": "Copy Link",
+    "reportSighting": "Report Sighting",
+    "reportAbuse": "Report Abuse",
+    "sightings": "Reported Sightings",
+    "noSightings": "No sightings reported yet"
+  },
+  "abuse": {
+    "title": "Report Abuse",
+    "reason": "Reason for Report",
+    "fake": "Fake/False Information",
+    "duplicate": "Duplicate Entry",
+    "inappropriate": "Inappropriate Content",
+    "other": "Other",
+    "description": "Please provide details",
+    "submit": "Submit Report",
+    "success": "Thank you for your report. We will review it promptly."
+  },
+  "footer": {
+    "disclaimer": "This platform is a community coordination tool for the Cyclone Ditwah crisis. Verify all information through official channels.",
+    "officialResources": "Official Resources",
+    "emergencyNumbers": "Emergency Numbers",
+    "createdBy": "Created for humanity during Cyclone Ditwah crisis"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Try Again",
+    "cancel": "Cancel",
+    "save": "Save",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "yes": "Yes",
+    "no": "No"
+  }
+}
+
