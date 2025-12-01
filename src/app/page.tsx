@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
-import { Search, UserPlus, CheckCircle, Users, Heart, Eye, ExternalLink, Info, Shield } from 'lucide-react'
+import { Search, UserPlus, CheckCircle, Users, Heart, Eye, ExternalLink } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { QuickSearch } from '@/components/home/QuickSearch'
 import { RecentMissing } from '@/components/home/RecentMissing'
@@ -108,45 +108,6 @@ export default async function Home() {
 
       {/* Recent Missing Persons */}
       <RecentMissing />
-
-      {/* Why This Platform Section */}
-      <section className="py-12 px-4 bg-white border-t">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-            <Info className="w-6 h-6 inline-block mr-2 text-blue-600" />
-            Why Use This Platform?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center p-6">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Search className="w-6 h-6 text-blue-600" />
-              </div>
-              <h3 className="font-semibold mb-2">Searchable Photo Database</h3>
-              <p className="text-gray-600 text-sm">
-                Unlike emergency forms, we provide a dedicated, searchable registry with photos to help identify missing loved ones.
-              </p>
-            </div>
-            <div className="text-center p-6">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="w-6 h-6 text-green-600" />
-              </div>
-              <h3 className="font-semibold mb-2">Verified & Moderated</h3>
-              <p className="text-gray-600 text-sm">
-                All reports are reviewed before publication to prevent misuse and ensure accurate information.
-              </p>
-            </div>
-            <div className="text-center p-6">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Heart className="w-6 h-6 text-purple-600" />
-              </div>
-              <h3 className="font-semibold mb-2">Community-Powered</h3>
-              <p className="text-gray-600 text-sm">
-                Report sightings, share on WhatsApp, and help reunite families through collective action.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Official Resources Section */}
       <section className="py-12 px-4 bg-gray-50 border-t">
