@@ -15,11 +15,13 @@ export function ReportForm() {
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setPhotoPreview(reader.result as string)
+      // Revoke previous URL to prevent memory leaks
+      if (photoPreview) {
+        URL.revokeObjectURL(photoPreview)
       }
-      reader.readAsDataURL(file)
+      // Use URL.createObjectURL for immediate preview (more reliable than FileReader)
+      const objectUrl = URL.createObjectURL(file)
+      setPhotoPreview(objectUrl)
     }
   }
 
@@ -35,6 +37,10 @@ export function ReportForm() {
       setResult(response)
       if (response.success) {
         (e.target as HTMLFormElement).reset()
+        // Revoke the object URL to free memory
+        if (photoPreview) {
+          URL.revokeObjectURL(photoPreview)
+        }
         setPhotoPreview(null)
       }
     } catch {
@@ -128,8 +134,13 @@ export function ReportForm() {
                 />
               </label>
               {photoPreview && (
-                <div className="w-24 h-24 rounded-lg overflow-hidden bg-gray-100">
-                  <img src={photoPreview} alt="Preview" className="w-full h-full object-cover" />
+                <div className="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={photoPreview}
+                    alt="Photo preview"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               )}
             </div>
