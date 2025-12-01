@@ -13,14 +13,41 @@ export function ShareButtons({ person }: ShareButtonsProps) {
   const t = useTranslations('person')
   const [copied, setCopied] = useState(false)
 
-  const shareUrl = typeof window !== 'undefined' 
+  const shareUrl = typeof window !== 'undefined'
     ? `${window.location.origin}/person/${person.id}`
     : ''
 
-  const shareText = `🔴 MISSING PERSON - Cyclone Ditwah\n\nName: ${person.full_name}\n${person.age ? `Age: ${person.age}\n` : ''}${person.district ? `Last seen: ${person.district}\n` : ''}\nPlease share and help reunite this family.\n\n${shareUrl}`
+  // Format last seen date
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return null
+    return new Date(dateString).toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    })
+  }
 
-  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`
-  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(shareText)}`
+  const lastSeenDate = formatDate(person.last_seen_date)
+  const lastSeenInfo = person.last_seen_location || person.district
+
+  // Build comprehensive share text
+  const shareLines = [
+    '🔴 MISSING PERSON - Cyclone Ditwah 🌀',
+    '',
+    `👤 Name: ${person.full_name}`,
+    person.age ? `📅 Age: ${person.age} years` : null,
+    person.gender ? `⚥ Gender: ${person.gender}` : null,
+    lastSeenInfo ? `📍 Last seen: ${lastSeenInfo}` : null,
+    lastSeenDate ? `🗓️ Date: ${lastSeenDate}` : null,
+    '',
+    '🙏 Please share and help reunite this family!',
+    '',
+    `🔗 More info: ${shareUrl}`,
+    person.photo_url ? `📷 Photo available at link above` : null,
+  ].filter(Boolean).join('\n')
+
+  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareLines)}`
+  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(shareLines)}`
 
   const copyToClipboard = async () => {
     try {
