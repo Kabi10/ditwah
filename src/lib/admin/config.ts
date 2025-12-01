@@ -2,7 +2,7 @@
 // Add admin emails here to grant access to the admin dashboard
 
 export const ADMIN_EMAILS = [
-  'kabilantharmaratnam@gmail.com', // Add your admin emails here
+  'kabilan321@gmail.com', // Add your admin emails here
 ] as const
 
 export function isAdminEmail(email: string | undefined | null): boolean {
