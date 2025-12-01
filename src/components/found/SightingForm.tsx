@@ -15,11 +15,12 @@ interface Person {
 
 interface SightingFormProps {
   persons: Person[]
+  preselectedPersonId?: string
 }
 
-export function SightingForm({ persons }: SightingFormProps) {
+export function SightingForm({ persons, preselectedPersonId }: SightingFormProps) {
   const t = useTranslations('found')
-  const [selectedPerson, setSelectedPerson] = useState<string>('')
+  const [selectedPerson, setSelectedPerson] = useState<string>(preselectedPersonId || '')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null)
   const [searchQuery, setSearchQuery] = useState('')

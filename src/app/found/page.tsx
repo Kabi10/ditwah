@@ -2,8 +2,15 @@ import { getTranslations } from 'next-intl/server'
 import { createClient } from '@/lib/supabase/server'
 import { SightingForm } from '@/components/found/SightingForm'
 
-export default async function FoundPage() {
+interface FoundPageProps {
+  searchParams: Promise<{
+    person?: string
+  }>
+}
+
+export default async function FoundPage({ searchParams }: FoundPageProps) {
   const t = await getTranslations('found')
+  const params = await searchParams
   const supabase = await createClient()
 
   // Get all missing persons for selection
@@ -25,7 +32,7 @@ export default async function FoundPage() {
             {t('selectPerson')}
           </p>
 
-          <SightingForm persons={persons || []} />
+          <SightingForm persons={persons || []} preselectedPersonId={params.person} />
         </div>
       </div>
     </div>
