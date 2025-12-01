@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { PersonCard } from '@/components/shared/PersonCard'
+import type { MissingPerson } from '@/lib/supabase/types'
 
 export async function RecentMissing() {
   const t = await getTranslations('home')
@@ -14,7 +15,7 @@ export async function RecentMissing() {
     .eq('is_published', true)
     .eq('status', 'missing')
     .order('created_at', { ascending: false })
-    .limit(6)
+    .limit(6) as { data: MissingPerson[] | null }
 
   if (!persons || persons.length === 0) {
     return null
