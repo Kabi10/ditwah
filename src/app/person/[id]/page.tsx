@@ -49,15 +49,14 @@ export default async function PersonPage({ params }: PersonPageProps) {
           {/* Header with Photo */}
           <div className="md:flex">
             {/* Photo */}
-            <div className="md:w-1/3 bg-gray-100">
-              <div className="relative aspect-square md:h-full">
+            <div className="md:w-1/3 bg-gray-100 flex items-center justify-center">
+              <div className="relative w-full aspect-[3/4] max-h-[400px] md:max-h-none">
                 {person.photo_url ? (
-                  <Image
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
                     src={person.photo_url}
                     alt={person.full_name}
-                    fill
-                    className="object-cover"
-                    priority
+                    className="w-full h-full object-contain"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
