@@ -1,6 +1,6 @@
 'use server'
 
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createAdminClient } from '@/lib/supabase/server'
 import { v4 as uuidv4 } from 'uuid'
 
 export async function reportMissingPerson(formData: FormData) {
@@ -27,27 +27,38 @@ export async function reportMissingPerson(formData: FormData) {
 
   let photo_url: string | null = null
 
-  // Upload photo if provided
+  // Upload photo if provided - use admin client for storage operations
   if (photo && photo.size > 0) {
-    const fileExt = photo.name.split('.').pop()
-    const fileName = `${uuidv4()}.${fileExt}`
-    const filePath = `missing_persons/${fileName}`
+    try {
+      const adminClient = createAdminClient()
+      const fileExt = photo.name.split('.').pop()?.toLowerCase() || 'jpg'
+      const fileName = `${uuidv4()}.${fileExt}`
+      const filePath = `missing_persons/${fileName}`
 
-    const { error: uploadError } = await supabase.storage
-      .from('missing_persons_photos')
-      .upload(filePath, photo, {
-        cacheControl: '3600',
-        upsert: false
-      })
+      // Convert File to ArrayBuffer for upload
+      const arrayBuffer = await photo.arrayBuffer()
+      const buffer = new Uint8Array(arrayBuffer)
 
-    if (uploadError) {
-      console.error('Photo upload error:', uploadError)
-      // Continue without photo rather than failing
-    } else {
-      const { data: urlData } = supabase.storage
+      const { error: uploadError } = await adminClient.storage
         .from('missing_persons_photos')
-        .getPublicUrl(filePath)
-      photo_url = urlData.publicUrl
+        .upload(filePath, buffer, {
+          cacheControl: '3600',
+          upsert: false,
+          contentType: photo.type || 'image/jpeg'
+        })
+
+      if (uploadError) {
+        console.error('Photo upload error:', uploadError)
+        // Continue without photo rather than failing
+      } else {
+        const { data: urlData } = adminClient.storage
+          .from('missing_persons_photos')
+          .getPublicUrl(filePath)
+        photo_url = urlData.publicUrl
+      }
+    } catch (error) {
+      console.error('Photo upload exception:', error)
+      // Continue without photo rather than failing the entire submission
     }
   }
 
