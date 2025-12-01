@@ -72,7 +72,14 @@ export async function reportMissingPerson(formData: FormData) {
 
   if (error) {
     console.error('Database error:', error)
-    return { success: false, message: 'Failed to submit report. Please try again.' }
+    // Provide more specific error messages
+    if (error.code === '23502') { // NOT NULL violation
+      return { success: false, message: 'Please fill in all required fields (name, district, your name, phone).' }
+    }
+    if (error.code === '23503') { // Foreign key violation
+      return { success: false, message: 'Invalid data submitted. Please check your inputs.' }
+    }
+    return { success: false, message: `Failed to submit report: ${error.message || 'Unknown error'}. Please try again.` }
   }
 
   return { 
