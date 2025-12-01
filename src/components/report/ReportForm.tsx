@@ -253,11 +253,11 @@ export function ReportForm() {
         </div>
       </section>
 
-      {/* Submit Button */}
+      {/* Submit Button - 48px min height for good touch target */}
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full py-3 px-6 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition"
+        className="w-full py-4 px-6 min-h-[48px] bg-red-600 text-white text-lg font-semibold rounded-lg hover:bg-red-700 active:bg-red-800 disabled:opacity-50 disabled:cursor-not-allowed transition touch-manipulation"
       >
         {isSubmitting ? t('submitting') : t('submit')}
       </button>

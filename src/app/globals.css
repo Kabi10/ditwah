@@ -91,3 +91,37 @@ body {
 .pulse-slow {
   animation: pulse-slow 2s ease-in-out infinite;
 }
+
+/* Mobile touch optimization */
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+/* Form inputs - minimum touch target height */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+input[type="datetime-local"],
+select,
+textarea {
+  min-height: 44px;
+  font-size: 16px; /* Prevents zoom on iOS */
+}
+
+/* Improve tap highlight on mobile */
+button, a, input, select, textarea {
+  -webkit-tap-highlight-color: rgba(220, 38, 38, 0.1);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}

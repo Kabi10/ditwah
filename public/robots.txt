@@ -1,0 +1,12 @@
+# Cyclone Ditwah Missing Persons Registry
+# https://ditwah.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://ditwah.com/sitemap.xml
+
+# Crawl-delay for politeness
+Crawl-delay: 1
+
