@@ -16,11 +16,8 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-lg">MP</span>
-            </div>
-            <div className="hidden sm:block">
+          <Link href="/" className="flex items-center">
+            <div>
               <div className="font-bold text-gray-900 text-sm leading-tight">Missing Persons</div>
               <div className="text-xs text-gray-500">Cyclone Ditwah Relief</div>
             </div>
