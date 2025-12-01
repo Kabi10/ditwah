@@ -37,7 +37,9 @@
     "results": "results found",
     "noResults": "No missing persons found matching your criteria",
     "lastSeen": "Last seen",
-    "age_years": "years old"
+    "age_years": "years old",
+    "lastSeenDate": "Last Seen Date",
+    "clearFilters": "Clear Filters"
   },
   "report": {
     "title": "Report Missing Person",

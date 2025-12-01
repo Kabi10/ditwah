@@ -11,6 +11,8 @@ interface SearchPageProps {
     status?: string
     minAge?: string
     maxAge?: string
+    dateFrom?: string
+    dateTo?: string
   }>
 }
 
@@ -47,6 +49,14 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     query = query.lte('age', parseInt(params.maxAge))
   }
 
+  if (params.dateFrom) {
+    query = query.gte('last_seen_date', params.dateFrom)
+  }
+
+  if (params.dateTo) {
+    query = query.lte('last_seen_date', params.dateTo)
+  }
+
   const { data: persons, error } = await query
 
   return (
@@ -57,7 +67,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Filters Sidebar */}
           <aside className="lg:col-span-1">
-            <SearchFilters 
+            <SearchFilters
               districts={DISTRICTS}
               currentFilters={{
                 q: params.q || '',
@@ -65,6 +75,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 status: params.status || 'all',
                 minAge: params.minAge || '',
                 maxAge: params.maxAge || '',
+                dateFrom: params.dateFrom || '',
+                dateTo: params.dateTo || '',
               }}
             />
           </aside>

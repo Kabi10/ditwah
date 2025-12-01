@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
-import { Search, Filter } from 'lucide-react'
+import { Search, Filter, X } from 'lucide-react'
 import { useState, useCallback } from 'react'
 
 interface SearchFiltersProps {
@@ -13,6 +13,8 @@ interface SearchFiltersProps {
     status: string
     minAge: string
     maxAge: string
+    dateFrom: string
+    dateTo: string
   }
 }
 
@@ -20,8 +22,11 @@ export function SearchFilters({ districts, currentFilters }: SearchFiltersProps)
   const t = useTranslations('search')
   const router = useRouter()
   const searchParams = useSearchParams()
-  
+
   const [filters, setFilters] = useState(currentFilters)
+
+  const hasFilters = filters.q || filters.district !== 'all' || filters.status !== 'all' ||
+    filters.minAge || filters.maxAge || filters.dateFrom || filters.dateTo
 
   const updateFilters = useCallback((key: string, value: string) => {
     const newFilters = { ...filters, [key]: value }
@@ -39,6 +44,20 @@ export function SearchFilters({ districts, currentFilters }: SearchFiltersProps)
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     updateFilters('q', filters.q)
+  }
+
+  const clearFilters = () => {
+    const cleared = {
+      q: '',
+      district: 'all',
+      status: 'all',
+      minAge: '',
+      maxAge: '',
+      dateFrom: '',
+      dateTo: '',
+    }
+    setFilters(cleared)
+    router.push('/search')
   }
 
   return (
@@ -98,7 +117,7 @@ export function SearchFilters({ districts, currentFilters }: SearchFiltersProps)
       </div>
 
       {/* Age Range */}
-      <div>
+      <div className="mb-4">
         <label className="block text-sm font-medium text-gray-700 mb-2">
           {t('age')}
         </label>
@@ -123,6 +142,40 @@ export function SearchFilters({ districts, currentFilters }: SearchFiltersProps)
           />
         </div>
       </div>
+
+      {/* Date Range - Last Seen */}
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          {t('lastSeenDate') || 'Last Seen Date'}
+        </label>
+        <div className="flex flex-col gap-2">
+          <input
+            type="date"
+            value={filters.dateFrom}
+            onChange={(e) => updateFilters('dateFrom', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+            placeholder="From"
+          />
+          <input
+            type="date"
+            value={filters.dateTo}
+            onChange={(e) => updateFilters('dateTo', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+            placeholder="To"
+          />
+        </div>
+      </div>
+
+      {/* Clear Filters Button */}
+      {hasFilters && (
+        <button
+          onClick={clearFilters}
+          className="w-full mt-4 px-4 py-2 flex items-center justify-center gap-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg transition"
+        >
+          <X className="w-4 h-4" />
+          {t('clearFilters') || 'Clear Filters'}
+        </button>
+      )}
     </div>
   )
 }
