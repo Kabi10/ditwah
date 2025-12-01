@@ -7,13 +7,14 @@ export async function reportSighting(formData: FormData) {
 
   const missing_person_id = formData.get('missing_person_id') as string
   const location = formData.get('location') as string
+  const district = formData.get('district') as string
   const sighting_date = formData.get('sighting_date') as string
   const description = formData.get('description') as string
   const reporter_name = formData.get('reporter_name') as string
   const reporter_phone = formData.get('reporter_phone') as string
 
   // Validate required fields
-  if (!missing_person_id || !location || !sighting_date || !reporter_name || !reporter_phone) {
+  if (!missing_person_id || !location || !district || !sighting_date || !reporter_name || !reporter_phone) {
     return { success: false, message: 'Please fill in all required fields.' }
   }
 
@@ -21,6 +22,7 @@ export async function reportSighting(formData: FormData) {
   const { error } = await supabase.from('sightings').insert({
     missing_person_id,
     location,
+    district,
     sighting_date,
     description: description || null,
     reporter_name,
