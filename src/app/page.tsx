@@ -114,7 +114,7 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-bold text-gray-900 mb-2 text-center">Official Resources</h2>
           <p className="text-gray-600 text-center mb-8">
-            ditwah.com complements these essential services. Use them together for comprehensive crisis support.
+            This registry complements these essential services. Use them together for comprehensive crisis support.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <a

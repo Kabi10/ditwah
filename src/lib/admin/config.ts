@@ -2,7 +2,6 @@
 // Add admin emails here to grant access to the admin dashboard
 
 export const ADMIN_EMAILS = [
-  'admin@ditwah.com',
   'kabilantharmaratnam@gmail.com', // Add your admin emails here
 ] as const
 

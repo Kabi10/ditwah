@@ -8,7 +8,7 @@ import { EmergencyBanner } from "@/components/layout/EmergencyBanner";
 import { SetupBanner } from "@/components/layout/SetupBanner";
 import { isSupabaseConfigured } from "@/lib/supabase/server";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ditwah.com';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://cyclone-ditwah-missing-persons.vercel.app';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -16,11 +16,11 @@ export const metadata: Metadata = {
     default: "Cyclone Ditwah Missing Persons Registry | Sri Lanka 2025",
     template: "%s | Cyclone Ditwah Missing Persons Registry",
   },
-  description: "Official missing persons registry for Cyclone Ditwah, Sri Lanka (November-December 2025). Search 370+ missing persons, report sightings, upload photos. Help reunite families affected by the devastating floods.",
-  keywords: ["Cyclone Ditwah", "Sri Lanka missing persons", "flood relief Sri Lanka", "family reunification", "disaster response 2025", "Sri Lanka floods", "missing person search", "cyclone victims Sri Lanka", "ditwah missing", "Sri Lanka emergency"],
-  authors: [{ name: "Ditwah Community Response Team" }],
-  creator: "ditwah.com",
-  publisher: "ditwah.com",
+  description: "Community missing persons registry for Cyclone Ditwah, Sri Lanka (November-December 2025). Search 370+ missing persons, report sightings, upload photos. Help reunite families affected by the devastating floods.",
+  keywords: ["Cyclone Ditwah", "Sri Lanka missing persons", "flood relief Sri Lanka", "family reunification", "disaster response 2025", "Sri Lanka floods", "missing person search", "cyclone victims Sri Lanka", "Sri Lanka emergency"],
+  authors: [{ name: "Cyclone Ditwah Community Response" }],
+  creator: "Cyclone Ditwah Community Response",
+  publisher: "Cyclone Ditwah Community Response",
   formatDetection: {
     telephone: true,
     email: true,
@@ -33,14 +33,13 @@ export const metadata: Metadata = {
     description: "Search 370+ missing persons, report sightings, upload photos. Help reunite families affected by Cyclone Ditwah in Sri Lanka.",
     type: "website",
     locale: "en_US",
-    siteName: "ditwah.com",
+    siteName: "Cyclone Ditwah Missing Persons Registry",
     url: siteUrl,
   },
   twitter: {
     card: "summary_large_image",
     title: "Cyclone Ditwah Missing Persons Registry",
     description: "Help reunite families affected by Cyclone Ditwah. 370+ people still missing.",
-    site: "@ditwah",
   },
   robots: {
     index: true,

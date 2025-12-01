@@ -18,11 +18,11 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-lg">D</span>
+              <span className="text-white font-bold text-lg">🌀</span>
             </div>
             <div className="hidden sm:block">
-              <div className="font-bold text-gray-900">ditwah.com</div>
-              <div className="text-xs text-gray-500">{tSite('subtitle')}</div>
+              <div className="font-bold text-gray-900 text-sm leading-tight">Missing Persons</div>
+              <div className="text-xs text-gray-500">Cyclone Ditwah Relief</div>
             </div>
           </Link>
 

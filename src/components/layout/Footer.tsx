@@ -114,7 +114,7 @@ export function Footer() {
             {t('createdBy')} <Heart className="w-4 h-4 text-red-500" />
           </p>
           <p className="text-gray-500 mt-2">
-            ditwah.com | cycloneditwah.com
+            Cyclone Ditwah Missing Persons Registry | Sri Lanka 2025
           </p>
         </div>
       </div>
