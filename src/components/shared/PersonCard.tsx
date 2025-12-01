@@ -35,10 +35,11 @@ export function PersonCard({ person }: PersonCardProps) {
             alt={person.full_name}
             fill
             className="object-cover"
+            unoptimized
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center">
-            <User className="w-16 h-16 text-gray-300" />
+          <div className="w-full h-full flex items-center justify-center bg-gray-100">
+            <User className="w-16 h-16 text-gray-400" />
           </div>
         )}
         
