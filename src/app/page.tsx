@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 import {
-  Search, UserPlus, CheckCircle, AlertTriangle,
+  Search, UserPlus, AlertTriangle,
   Tent, Heart, ArrowRight, Clock, MapPin, ExternalLink, Eye,
   TrendingUp, Activity
 } from 'lucide-react'
@@ -102,66 +102,50 @@ export default async function Home() {
 
             </div>
 
-            {/* Right: Primary Actions */}
-            <div className="space-y-3">
+            {/* Right: Two Primary Actions Only */}
+            <div className="space-y-4">
+              {/* Primary CTA 1: Report Missing (Urgent - Red/Orange) */}
               <Link
                 href="/report"
-                className="flex items-center justify-between w-full p-4 bg-red-600 hover:bg-red-700 text-white rounded-lg transition group"
+                className="flex items-center justify-between w-full p-5 bg-gradient-to-r from-red-600 to-orange-500 hover:from-red-700 hover:to-orange-600 text-white rounded-xl transition group shadow-lg shadow-red-500/20"
               >
-                <div className="flex items-center gap-3">
-                  <UserPlus className="w-6 h-6" />
+                <div className="flex items-center gap-4">
+                  <div className="p-2 bg-white/20 rounded-lg">
+                    <UserPlus className="w-7 h-7" />
+                  </div>
                   <div>
-                    <div className="font-semibold">{t('reportMissing')}</div>
-                    <div className="text-red-200 text-sm">{t('reportMissingDesc')}</div>
+                    <div className="font-bold text-lg">{t('reportMissing')}</div>
+                    <div className="text-red-100 text-sm">{t('reportMissingDesc')}</div>
                   </div>
                 </div>
-                <ArrowRight className="w-5 h-5 opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition" />
+                <ArrowRight className="w-6 h-6 opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition" />
               </Link>
 
+              {/* Primary CTA 2: I Found Someone / Have Information (Hopeful - Green/Blue) */}
               <Link
                 href="/found"
-                className="flex items-center justify-between w-full p-4 bg-green-600 hover:bg-green-700 text-white rounded-lg transition group"
+                className="flex items-center justify-between w-full p-5 bg-gradient-to-r from-green-600 to-teal-500 hover:from-green-700 hover:to-teal-600 text-white rounded-xl transition group shadow-lg shadow-green-500/20"
               >
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="w-6 h-6" />
+                <div className="flex items-center gap-4">
+                  <div className="p-2 bg-white/20 rounded-lg">
+                    <Eye className="w-7 h-7" />
+                  </div>
                   <div>
-                    <div className="font-semibold">{t('reportFound')}</div>
-                    <div className="text-green-200 text-sm">{t('reportFoundDesc')}</div>
+                    <div className="font-bold text-lg">I Found Someone / Have Info</div>
+                    <div className="text-green-100 text-sm">Report a sighting or found person</div>
                   </div>
                 </div>
-                <ArrowRight className="w-5 h-5 opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition" />
+                <ArrowRight className="w-6 h-6 opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition" />
               </Link>
 
-              {/* Two-Way Search Actions - Based on Google Person Finder's dual-mode approach */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <Link
-                  href="/search?mode=looking"
-                  className="flex items-center justify-between w-full p-4 bg-slate-100 hover:bg-slate-200 text-slate-900 rounded-lg transition group border-2 border-slate-200 hover:border-blue-400"
-                >
-                  <div className="flex items-center gap-3">
-                    <Search className="w-6 h-6 text-blue-600" />
-                    <div>
-                      <div className="font-semibold">I&apos;m Looking For Someone</div>
-                      <div className="text-slate-600 text-xs">Search reported missing persons</div>
-                    </div>
-                  </div>
-                  <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition" />
-                </Link>
-
-                <Link
-                  href="/search?mode=info"
-                  className="flex items-center justify-between w-full p-4 bg-slate-100 hover:bg-slate-200 text-slate-900 rounded-lg transition group border-2 border-slate-200 hover:border-amber-400"
-                >
-                  <div className="flex items-center gap-3">
-                    <Eye className="w-6 h-6 text-amber-600" />
-                    <div>
-                      <div className="font-semibold">I Have Information</div>
-                      <div className="text-slate-600 text-xs">Report a sighting or found person</div>
-                    </div>
-                  </div>
-                  <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-amber-600 group-hover:translate-x-1 transition" />
-                </Link>
-              </div>
+              {/* Secondary: Search Link */}
+              <Link
+                href="/search"
+                className="flex items-center justify-center gap-2 w-full py-3 text-slate-600 hover:text-blue-600 transition text-sm font-medium"
+              >
+                <Search className="w-4 h-4" />
+                <span>Search all {stats.missing} registered missing persons</span>
+              </Link>
             </div>
           </div>
         </div>
