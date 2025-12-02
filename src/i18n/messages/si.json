@@ -224,6 +224,23 @@
     "lastUpdated": "අවසන් යාවත්කාලීන කිරීම",
     "liveMonitoring": "සජීව අධීක්ෂණ සම්පත්",
     "viewData": "දත්ත බලන්න",
+    "findCamp": "සහන කඳවුරක් සොයන්න",
+    "findCampDescription": "ඔබේ දිස්ත්‍රික්කය තෝරා නිවැරදි ලිපිනය සහ සම්බන්ධතා තොරතුරු සහිත ආසන්නම නවාතැන සොයන්න",
+    "selectDistrict": "දිස්ත්‍රික්කය තෝරන්න",
+    "chooseDistrict": "-- දිස්ත්‍රික්කයක් තෝරන්න --",
+    "selectCamp": "සහන කඳවුර තෝරන්න",
+    "chooseCamp": "-- කඳවුරක් තෝරන්න --",
+    "occupancy": "වත්මන් ධාරිතාව",
+    "occupied": "පිරී ඇත",
+    "facilities": "පහසුකම්",
+    "callCamp": "කඳවුරට ඇමතන්න",
+    "getDirections": "මාර්ග උපදෙස් ලබා ගන්න",
+    "allCampsIn": "සියලුම කඳවුරු",
+    "campStatus": {
+      "open": "විවෘතයි",
+      "limited": "සීමිත ඉඩ",
+      "full": "පිරී ඇත"
+    },
     "status": {
       "critical": "බරපතළ",
       "high": "ඉහළ අවශ්‍යතාව",

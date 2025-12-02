@@ -224,6 +224,23 @@
     "lastUpdated": "Last updated",
     "liveMonitoring": "Live Monitoring Resources",
     "viewData": "View Data",
+    "findCamp": "Find a Relief Camp",
+    "findCampDescription": "Select your district and find the nearest shelter with exact address and contact details",
+    "selectDistrict": "Select District",
+    "chooseDistrict": "-- Choose a district --",
+    "selectCamp": "Select Relief Camp",
+    "chooseCamp": "-- Choose a camp --",
+    "occupancy": "Current Occupancy",
+    "occupied": "occupied",
+    "facilities": "Available Facilities",
+    "callCamp": "Call Camp",
+    "getDirections": "Get Directions",
+    "allCampsIn": "All camps in",
+    "campStatus": {
+      "open": "Open",
+      "limited": "Limited Space",
+      "full": "Full"
+    },
     "status": {
       "critical": "Critical",
       "high": "High Need",
