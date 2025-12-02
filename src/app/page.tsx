@@ -1,8 +1,9 @@
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 import {
-  Search, UserPlus, CheckCircle, Phone, AlertTriangle,
-  Tent, Heart, ArrowRight, Clock, MapPin, ExternalLink, Eye
+  Search, UserPlus, CheckCircle, AlertTriangle,
+  Tent, Heart, ArrowRight, Clock, MapPin, ExternalLink, Eye,
+  TrendingUp, Activity
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { QuickSearch } from '@/components/home/QuickSearch'
@@ -24,6 +25,15 @@ async function getStats() {
   }
 }
 
+// Recovery start date (when cyclone passed)
+const RECOVERY_START_DATE = new Date('2025-11-27')
+
+function getRecoveryDays(): number {
+  const today = new Date()
+  const diffTime = Math.abs(today.getTime() - RECOVERY_START_DATE.getTime())
+  return Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+}
+
 // Crisis statistics from DMC
 const crisisStats = {
   affected: '1.37M',
@@ -41,27 +51,23 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Critical Actions Bar - Always visible */}
+      {/* Recovery Status Bar - Always visible */}
       <div className="bg-slate-900 text-white">
         <div className="max-w-7xl mx-auto px-4 py-3">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div className="flex items-center gap-2 text-sm">
-              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-red-600 rounded text-xs font-semibold uppercase tracking-wide">
-                <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-                Active Crisis
+              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-amber-600 rounded text-xs font-semibold uppercase tracking-wide">
+                <Activity className="w-3 h-3" />
+                Recovery Phase
               </span>
-              <span className="text-slate-400">|</span>
-              <span className="text-slate-300">Last updated: {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-slate-700 rounded text-xs">
+                <TrendingUp className="w-3 h-3 text-green-400" />
+                Day {getRecoveryDays()} of Recovery
+              </span>
             </div>
-            <div className="flex items-center gap-4 text-sm">
-              <a href="tel:117" className="flex items-center gap-1.5 text-yellow-400 hover:text-yellow-300 font-medium">
-                <Phone className="w-4 h-4" />
-                117 Emergency
-              </a>
-              <a href="tel:+94112136136" className="hidden sm:flex items-center gap-1.5 text-slate-300 hover:text-white">
-                <Phone className="w-4 h-4" />
-                DMC: +94 112 136 136
-              </a>
+            <div className="flex items-center gap-2 text-xs text-slate-400">
+              <Clock className="w-3 h-3" />
+              <span>Last updated: {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
             </div>
           </div>
         </div>
@@ -94,21 +100,6 @@ export default async function Home() {
                 <QuickSearch />
               </div>
 
-              {/* Quick Stats Row */}
-              <div className="mt-6 flex flex-wrap gap-4">
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl font-bold text-red-600">{stats.missing}</span>
-                  <span className="text-sm text-slate-600">registered missing</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl font-bold text-green-600">{stats.found}</span>
-                  <span className="text-sm text-slate-600">found safe</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl font-bold text-blue-600">{stats.sightings}</span>
-                  <span className="text-sm text-slate-600">sightings reported</span>
-                </div>
-              </div>
             </div>
 
             {/* Right: Primary Actions */}
@@ -176,16 +167,51 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Crisis Overview Strip */}
-      <section className="bg-slate-800 text-white py-4 border-b border-slate-700">
+      {/* Unified Statistics Dashboard */}
+      <section className="bg-slate-800 text-white py-6 border-b border-slate-700">
         <div className="max-w-7xl mx-auto px-4">
+          {/* Critical Missing Stats - Most Prominent */}
+          <div className="mb-6 p-4 bg-gradient-to-r from-red-900/50 to-slate-800 rounded-lg border border-red-700/50">
+            <div className="flex items-center gap-2 mb-3">
+              <AlertTriangle className="w-5 h-5 text-red-400" />
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-red-300">
+                Missing Persons Status
+              </h2>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="text-center p-3 bg-red-950/50 rounded-lg">
+                <div className="text-3xl md:text-4xl font-bold text-red-400">{crisisStats.deaths}</div>
+                <div className="text-xs text-red-300 mt-1">Confirmed Deaths</div>
+                <div className="text-xs text-slate-500">Official DMC</div>
+              </div>
+              <div className="text-center p-3 bg-amber-950/50 rounded-lg">
+                <div className="text-3xl md:text-4xl font-bold text-amber-400">{crisisStats.stillMissing}</div>
+                <div className="text-xs text-amber-300 mt-1">Still Missing</div>
+                <div className="text-xs text-slate-500">Official DMC</div>
+              </div>
+              <div className="text-center p-3 bg-slate-700/50 rounded-lg border border-slate-600">
+                <div className="text-2xl md:text-3xl font-bold text-white">{stats.missing}</div>
+                <div className="text-xs text-slate-300 mt-1">Registered Here</div>
+                <div className="text-xs text-blue-400">This Platform</div>
+              </div>
+              <div className="text-center p-3 bg-slate-700/50 rounded-lg border border-slate-600">
+                <div className="text-2xl md:text-3xl font-bold text-green-400">
+                  {stats.found > 0 ? stats.found : <span className="text-slate-400 text-lg">—</span>}
+                </div>
+                <div className="text-xs text-slate-300 mt-1">{stats.found > 0 ? 'Found Safe' : 'Reunification in Progress'}</div>
+                <div className="text-xs text-blue-400">This Platform</div>
+              </div>
+            </div>
+          </div>
+
+          {/* General Impact Stats */}
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-400">
               Cyclone Ditwah Impact Summary
             </h2>
             <span className="text-xs text-slate-500">Source: DMC Sri Lanka</span>
           </div>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
+          <div className="grid grid-cols-4 gap-4">
             <div className="text-center">
               <div className="text-xl md:text-2xl font-bold text-white">{crisisStats.affected}</div>
               <div className="text-xs text-slate-400">People Affected</div>
@@ -201,14 +227,6 @@ export default async function Home() {
             <div className="text-center">
               <div className="text-xl md:text-2xl font-bold text-orange-400">{crisisStats.districts}</div>
               <div className="text-xs text-slate-400">Districts</div>
-            </div>
-            <div className="text-center">
-              <div className="text-xl md:text-2xl font-bold text-red-400">{crisisStats.deaths}</div>
-              <div className="text-xs text-slate-400">Deaths</div>
-            </div>
-            <div className="text-center">
-              <div className="text-xl md:text-2xl font-bold text-red-300">{crisisStats.stillMissing}</div>
-              <div className="text-xs text-slate-400">Still Missing</div>
             </div>
           </div>
         </div>
@@ -278,23 +296,24 @@ export default async function Home() {
               </div>
             </a>
 
-            {/* Contact DMC */}
-            <div className="flex items-start gap-4 p-4 rounded-lg border-2 border-slate-200 bg-slate-50">
-              <div className="p-2 bg-slate-200 rounded">
-                <Phone className="w-5 h-5 text-slate-600" />
+            {/* Search All Missing */}
+            <Link
+              href="/search"
+              className="flex items-start gap-4 p-4 rounded-lg border-2 border-slate-200 hover:border-blue-400 hover:bg-blue-50 transition group"
+            >
+              <div className="p-2 bg-blue-100 rounded group-hover:bg-blue-200 transition">
+                <Search className="w-5 h-5 text-blue-600" />
               </div>
               <div>
-                <h3 className="font-semibold text-slate-900">DMC Hotlines</h3>
-                <div className="mt-2 space-y-1">
-                  <a href="tel:117" className="block text-sm font-mono text-blue-600 hover:text-blue-800">
-                    117 <span className="text-slate-500 font-sans">(24hr)</span>
-                  </a>
-                  <a href="tel:+94112136136" className="block text-sm font-mono text-blue-600 hover:text-blue-800">
-                    +94 112 136 136
-                  </a>
+                <h3 className="font-semibold text-slate-900">{t('viewAll')}</h3>
+                <p className="text-sm text-slate-600 mt-0.5">{t('searchDesc')}</p>
+                <div className="mt-2 flex items-center gap-2">
+                  <span className="text-xs font-medium text-blue-600">
+                    {stats.missing} cases registered
+                  </span>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
