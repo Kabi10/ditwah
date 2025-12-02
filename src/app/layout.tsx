@@ -11,6 +11,7 @@ import { SetupBanner } from "@/components/layout/SetupBanner";
 import { isSupabaseConfigured } from "@/lib/supabase/server";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { Analytics } from "@/components/analytics/Analytics";
+import { OfflineIndicator } from "@/components/pwa/OfflineIndicator";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://cyclone-ditwah-missing-persons.vercel.app';
 
@@ -28,6 +29,14 @@ export const metadata: Metadata = {
   formatDetection: {
     telephone: true,
     email: true,
+  },
+  // PWA Manifest
+  manifest: '/manifest.json',
+  // Apple Touch Icon
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Ditwah',
   },
   alternates: {
     canonical: siteUrl,
@@ -129,12 +138,24 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <head>
+        {/* PWA Meta Tags */}
+        <meta name="application-name" content="Ditwah" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Ditwah" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content="#dc2626" />
+        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+
+        {/* Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
+
+        {/* Structured Data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -154,6 +175,8 @@ export default async function RootLayout({
             {children}
           </main>
           <Footer />
+          {/* PWA Offline Indicator - Shows when network is unavailable */}
+          <OfflineIndicator />
         </NextIntlClientProvider>
       </body>
     </html>

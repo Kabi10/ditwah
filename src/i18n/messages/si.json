@@ -230,6 +230,20 @@
       "moderate": "මධ්‍යස්ථ",
       "low": "ස්ථාවර"
     }
+  },
+  "pwa": {
+    "offlineTitle": "ඔබ නොබැඳි තත්වයේ සිටී",
+    "lastUpdated": "දත්ත අවසන් වරට යාවත්කාලීන කළේ",
+    "unknownTime": "නොදන්නා",
+    "justNow": "දැන්ම",
+    "minutesAgo": "මිනිත්තු {count}කට පෙර",
+    "hoursAgo": "පැය {count}කට පෙර",
+    "daysAgo": "දින {count}කට පෙර",
+    "retry": "නැවත උත්සාහ කරන්න",
+    "installPrompt": "Ditwah යෙදුම ස්ථාපනය කරන්න",
+    "installDescription": "ජාල බිඳවැටීම් වලදී නොබැඳි ප්‍රවේශය සඳහා ස්ථාපනය කරන්න",
+    "install": "ස්ථාපනය කරන්න",
+    "dismiss": "දැන් නොවේ"
   }
 }
 

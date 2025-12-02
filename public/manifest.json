@@ -1,0 +1,112 @@
+{
+  "name": "Ditwah - Cyclone Disaster Relief",
+  "short_name": "Ditwah",
+  "description": "Missing Persons Registry, Relief Camps, and Disaster Relief for Cyclone Ditwah in Sri Lanka",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#dc2626",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["emergency", "government", "utilities"],
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/home.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Ditwah Homepage"
+    },
+    {
+      "src": "/screenshots/search.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Search Missing Persons"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Report Missing Person",
+      "short_name": "Report",
+      "description": "Report a missing family member or friend",
+      "url": "/report",
+      "icons": [{ "src": "/icons/report-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Search Missing",
+      "short_name": "Search",
+      "description": "Search for missing persons",
+      "url": "/search",
+      "icons": [{ "src": "/icons/search-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Relief Camps",
+      "short_name": "Camps",
+      "description": "Find relief camps by district",
+      "url": "/relief-camps",
+      "icons": [{ "src": "/icons/camps-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Emergency: 117",
+      "short_name": "117",
+      "description": "Call emergency services",
+      "url": "tel:117",
+      "icons": [{ "src": "/icons/emergency-icon.png", "sizes": "96x96" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
+

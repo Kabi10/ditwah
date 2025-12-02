@@ -230,6 +230,20 @@
       "moderate": "Moderate",
       "low": "Stable"
     }
+  },
+  "pwa": {
+    "offlineTitle": "You are offline",
+    "lastUpdated": "Data last updated",
+    "unknownTime": "Unknown",
+    "justNow": "Just now",
+    "minutesAgo": "{count} minutes ago",
+    "hoursAgo": "{count} hours ago",
+    "daysAgo": "{count} days ago",
+    "retry": "Retry",
+    "installPrompt": "Install Ditwah App",
+    "installDescription": "Install for offline access during network outages",
+    "install": "Install",
+    "dismiss": "Not now"
   }
 }
 
