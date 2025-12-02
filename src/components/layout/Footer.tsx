@@ -73,24 +73,28 @@ export function Footer() {
             <h3 className="font-semibold text-white mb-4">{t('emergencyNumbers')}</h3>
             <ul className="space-y-2 text-sm">
               <li className="flex items-center gap-2">
-                <Phone className="w-3 h-3" />
-                <span>117 - Emergency</span>
+                <Phone className="w-3 h-3 text-red-400" />
+                <a href="tel:117" className="hover:text-white">117 - Emergency (24hr)</a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Phone className="w-3 h-3 text-orange-400" />
+                <a href="tel:+94112136136" className="hover:text-white">+94 112 136 136 - DMC General</a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Phone className="w-3 h-3 text-orange-400" />
+                <a href="tel:+94112136222" className="hover:text-white">+94 112 136 222 - DMC Emergency Ops</a>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-3 h-3" />
-                <span>119 - Police</span>
+                <a href="tel:119" className="hover:text-white">119 - Police</a>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-3 h-3" />
-                <span>1990 - Disaster Management</span>
+                <a href="tel:110" className="hover:text-white">110 - Fire Brigade</a>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-3 h-3" />
-                <span>110 - Fire Brigade</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="w-3 h-3" />
-                <span>108 - Ambulance</span>
+                <a href="tel:108" className="hover:text-white">108 - Ambulance</a>
               </li>
             </ul>
           </div>

@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
-import { Search, UserPlus, CheckCircle, Users, Heart, Eye, ExternalLink } from 'lucide-react'
+import { Search, UserPlus, CheckCircle, Users, Heart, Eye, ExternalLink, Tent, DollarSign } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { QuickSearch } from '@/components/home/QuickSearch'
 import { RecentMissing } from '@/components/home/RecentMissing'
@@ -69,37 +69,60 @@ export default async function Home() {
       {/* Action Buttons */}
       <section className="py-12 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">{t('howCanWeHelp')}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             <Link
               href="/search"
-              className="flex flex-col items-center p-8 bg-white rounded-xl shadow-sm hover:shadow-md transition card-hover border border-gray-100"
+              className="flex flex-col items-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition card-hover border border-gray-100"
             >
-              <Search className="w-12 h-12 text-blue-600 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">{t('viewAll')}</h3>
-              <p className="text-gray-500 text-center text-sm">
-                Browse and search all reported missing persons
+              <Search className="w-10 h-10 text-blue-600 mb-3" />
+              <h3 className="text-lg font-semibold mb-1">{t('viewAll')}</h3>
+              <p className="text-gray-500 text-center text-xs">
+                {t('searchDesc')}
+              </p>
+            </Link>
+
+            <Link
+              href="/relief-camps"
+              className="flex flex-col items-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition card-hover border border-gray-100"
+            >
+              <Tent className="w-10 h-10 text-orange-600 mb-3" />
+              <h3 className="text-lg font-semibold mb-1">{t('reliefCamps')}</h3>
+              <p className="text-gray-500 text-center text-xs">
+                {t('reliefCampsDesc')}
+              </p>
+            </Link>
+
+            <Link
+              href="/donate"
+              className="flex flex-col items-center p-6 bg-green-600 text-white rounded-xl shadow-sm hover:shadow-md transition card-hover"
+            >
+              <DollarSign className="w-10 h-10 mb-3" />
+              <h3 className="text-lg font-semibold mb-1">{t('donate')}</h3>
+              <p className="text-green-100 text-center text-xs">
+                {t('donateDesc')}
               </p>
             </Link>
 
             <Link
               href="/report"
-              className="flex flex-col items-center p-8 bg-red-600 text-white rounded-xl shadow-sm hover:shadow-md transition card-hover"
+              className="flex flex-col items-center p-6 bg-red-600 text-white rounded-xl shadow-sm hover:shadow-md transition card-hover"
             >
-              <UserPlus className="w-12 h-12 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">{t('reportMissing')}</h3>
-              <p className="text-red-100 text-center text-sm">
-                Report a missing family member or friend
+              <UserPlus className="w-10 h-10 mb-3" />
+              <h3 className="text-lg font-semibold mb-1">{t('reportMissing')}</h3>
+              <p className="text-red-100 text-center text-xs">
+                {t('reportMissingDesc')}
               </p>
             </Link>
 
             <Link
               href="/found"
-              className="flex flex-col items-center p-8 bg-white rounded-xl shadow-sm hover:shadow-md transition card-hover border border-gray-100"
+              className="flex flex-col items-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition card-hover border border-gray-100"
             >
-              <CheckCircle className="w-12 h-12 text-green-600 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">{t('reportFound')}</h3>
-              <p className="text-gray-500 text-center text-sm">
-                Report a sighting or found person
+              <CheckCircle className="w-10 h-10 text-green-600 mb-3" />
+              <h3 className="text-lg font-semibold mb-1">{t('reportFound')}</h3>
+              <p className="text-gray-500 text-center text-xs">
+                {t('reportFoundDesc')}
               </p>
             </Link>
           </div>

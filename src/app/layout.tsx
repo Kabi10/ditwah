@@ -1,23 +1,26 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
+import { Suspense } from 'react';
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { EmergencyBanner } from "@/components/layout/EmergencyBanner";
 import { SetupBanner } from "@/components/layout/SetupBanner";
 import { isSupabaseConfigured } from "@/lib/supabase/server";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { Analytics } from "@/components/analytics/Analytics";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://cyclone-ditwah-missing-persons.vercel.app';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Cyclone Ditwah Missing Persons Registry | Sri Lanka 2025",
-    template: "%s | Cyclone Ditwah Missing Persons Registry",
+    default: "Cyclone Ditwah Disaster Relief | Sri Lanka 2025",
+    template: "%s | Cyclone Ditwah Relief",
   },
-  description: "Community missing persons registry for Cyclone Ditwah, Sri Lanka (November-December 2025). Search 370+ missing persons, report sightings, upload photos. Help reunite families affected by the devastating floods.",
-  keywords: ["Cyclone Ditwah", "Sri Lanka missing persons", "flood relief Sri Lanka", "family reunification", "disaster response 2025", "Sri Lanka floods", "missing person search", "cyclone victims Sri Lanka", "Sri Lanka emergency"],
+  description: "Comprehensive disaster relief platform for Cyclone Ditwah, Sri Lanka (November-December 2025). Missing persons registry, relief camps, verified donation portals, and emergency resources. Help reunite families and support relief efforts.",
+  keywords: ["Cyclone Ditwah", "Sri Lanka disaster relief", "flood relief Sri Lanka", "missing persons", "relief camps", "donate Sri Lanka", "family reunification", "disaster response 2025", "Sri Lanka floods", "cyclone victims Sri Lanka", "Sri Lanka emergency", "refugee camps Sri Lanka"],
   authors: [{ name: "Cyclone Ditwah Community Response" }],
   creator: "Cyclone Ditwah Community Response",
   publisher: "Cyclone Ditwah Community Response",
@@ -29,17 +32,17 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   openGraph: {
-    title: "Cyclone Ditwah Missing Persons Registry | Sri Lanka 2025",
-    description: "Search 370+ missing persons, report sightings, upload photos. Help reunite families affected by Cyclone Ditwah in Sri Lanka.",
+    title: "Cyclone Ditwah Disaster Relief | Sri Lanka 2025",
+    description: "Missing persons registry, relief camps, verified donations. Comprehensive disaster relief platform for Cyclone Ditwah in Sri Lanka.",
     type: "website",
     locale: "en_US",
-    siteName: "Cyclone Ditwah Missing Persons Registry",
+    siteName: "Cyclone Ditwah Disaster Relief",
     url: siteUrl,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cyclone Ditwah Missing Persons Registry",
-    description: "Help reunite families affected by Cyclone Ditwah. 370+ people still missing.",
+    title: "Cyclone Ditwah Disaster Relief",
+    description: "Missing persons • Relief camps • Donations • Resources. Comprehensive disaster relief for Cyclone Ditwah, Sri Lanka.",
   },
   robots: {
     index: true,
@@ -72,9 +75,9 @@ export default async function RootLayout({
       {
         '@type': 'Organization',
         '@id': `${siteUrl}/#organization`,
-        name: 'Cyclone Ditwah Missing Persons Registry',
+        name: 'Cyclone Ditwah Disaster Relief',
         url: siteUrl,
-        description: 'Community-driven platform to help reunite families separated by Cyclone Ditwah in Sri Lanka',
+        description: 'Comprehensive disaster relief platform for Cyclone Ditwah in Sri Lanka - missing persons, relief camps, donations, and resources',
         foundingDate: '2025-11',
         areaServed: {
           '@type': 'Country',
@@ -85,8 +88,8 @@ export default async function RootLayout({
         '@type': 'WebSite',
         '@id': `${siteUrl}/#website`,
         url: siteUrl,
-        name: 'Cyclone Ditwah Missing Persons Registry',
-        description: 'Search for missing persons, report sightings, and help reunite families affected by Cyclone Ditwah',
+        name: 'Cyclone Ditwah Disaster Relief',
+        description: 'Missing persons registry, relief camps, verified donations, and emergency resources for Cyclone Ditwah relief',
         publisher: { '@id': `${siteUrl}/#organization` },
         potentialAction: {
           '@type': 'SearchAction',
@@ -101,10 +104,10 @@ export default async function RootLayout({
         '@type': 'WebPage',
         '@id': `${siteUrl}/#webpage`,
         url: siteUrl,
-        name: 'Cyclone Ditwah Missing Persons Registry | Sri Lanka 2025',
+        name: 'Cyclone Ditwah Disaster Relief | Sri Lanka 2025',
         isPartOf: { '@id': `${siteUrl}/#website` },
         about: { '@id': `${siteUrl}/#organization` },
-        description: 'Help reunite families affected by Cyclone Ditwah. 370+ people are still missing.',
+        description: 'Comprehensive disaster relief platform: missing persons, relief camps, donations, and resources for Cyclone Ditwah.',
         breadcrumb: { '@id': `${siteUrl}/#breadcrumb` },
       },
       {
@@ -137,7 +140,11 @@ export default async function RootLayout({
         />
       </head>
       <body className="antialiased min-h-screen flex flex-col">
+        <GoogleAnalytics />
         <NextIntlClientProvider messages={messages}>
+          <Suspense fallback={null}>
+            <Analytics />
+          </Suspense>
           <SetupBanner isConfigured={isSupabaseConfigured()} />
           <EmergencyBanner />
           <Header />

@@ -1,15 +1,19 @@
 {
   "site": {
-    "title": "Cyclone Ditwah Missing Persons Registry",
-    "subtitle": "Help reunite families affected by Cyclone Ditwah in Sri Lanka",
-    "tagline": "370+ people are still missing. Your help can reunite families."
+    "title": "Cyclone Ditwah Disaster Relief",
+    "subtitle": "Comprehensive disaster relief platform for Cyclone Ditwah in Sri Lanka",
+    "tagline": "Missing Persons • Relief Camps • Donations • Resources"
   },
   "nav": {
     "home": "Home",
     "search": "Search",
     "report": "Report Missing",
     "found": "Report Found",
-    "about": "About"
+    "about": "About",
+    "donate": "Donate",
+    "reliefCamps": "Relief Camps",
+    "browse": "Browse",
+    "actions": "Actions"
   },
   "stats": {
     "missing": "Missing",
@@ -17,12 +21,20 @@
     "sightings": "Sightings Reported"
   },
   "home": {
-    "hero": "Missing Persons Registry",
-    "heroSubtitle": "Cyclone Ditwah - Sri Lanka",
+    "hero": "Cyclone Ditwah Disaster Relief",
+    "heroSubtitle": "Missing Persons • Relief Camps • Donations • Resources",
     "searchPlaceholder": "Search by name...",
-    "reportMissing": "Report Missing Person",
-    "reportFound": "Report Found/Sighting",
-    "viewAll": "View All Missing Persons"
+    "howCanWeHelp": "How Can We Help You?",
+    "reportMissing": "Report Missing",
+    "reportMissingDesc": "Report a missing family member or friend",
+    "reportFound": "Report Found",
+    "reportFoundDesc": "Report a sighting or found person",
+    "viewAll": "Search Missing",
+    "searchDesc": "Browse and search all reported missing persons",
+    "reliefCamps": "Relief Camps",
+    "reliefCampsDesc": "Find shelters and relief services by district",
+    "donate": "Donate",
+    "donateDesc": "Support verified relief efforts"
   },
   "search": {
     "title": "Search Missing Persons",
@@ -132,6 +144,55 @@
     "next": "Next",
     "yes": "Yes",
     "no": "No"
+  },
+  "donate": {
+    "title": "Donate to Cyclone Ditwah Relief",
+    "subtitle": "Support verified government and humanitarian relief efforts",
+    "governmentFunds": "Official Government Funds",
+    "humanitarianOrgs": "Humanitarian Organizations",
+    "govDonateDesc": "Official Sri Lanka Government donation portal for disaster relief. 100% of donations go directly to relief efforts.",
+    "govPayDesc": "Ministry of Finance Disaster Relief Fund via the official government payment gateway.",
+    "redCrossDesc": "Sri Lanka Red Cross Society provides emergency relief, first aid, and family reunification services.",
+    "icrcDesc": "International Committee of the Red Cross helps restore family links and trace missing persons globally.",
+    "verified": "Verified",
+    "donateNow": "Donate Now",
+    "visitWebsite": "Visit Website",
+    "scamWarning": "Only donate through verified official channels. Be cautious of fraudulent appeals. All links on this page have been verified.",
+    "transparencyTitle": "Donation Transparency",
+    "transparencyDesc": "We encourage all donors to request receipts and verify fund allocation. Contact the respective organizations for detailed breakdowns of how donations are used.",
+    "bankTransfer": "Bank Transfer Details",
+    "bankTransferDesc": "For direct bank transfers, use the following official government accounts:",
+    "localDonors": "Local Donors (LKR)",
+    "foreignDonorsUSD": "Foreign Donors (USD)",
+    "overseasLKR": "Overseas Sri Lankans (LKR)",
+    "accountName": "Account Name",
+    "accountNumber": "Account Number",
+    "bank": "Bank",
+    "swiftCode": "SWIFT Code"
+  },
+  "reliefCamps": {
+    "title": "Relief Camps & Shelters",
+    "subtitle": "Find shelter and relief services for displaced families",
+    "safetyCentres": "Safety Centres",
+    "peopleSheltered": "People Sheltered",
+    "peopleAffected": "People Affected",
+    "familiesAffected": "Families Affected",
+    "deaths": "Deaths",
+    "missing": "Missing",
+    "affectedDistricts": "Districts Affected",
+    "campsByDistrict": "Camps by District",
+    "camps": "camps",
+    "people": "people",
+    "dataNotice": "Relief camp data is compiled from official DMC statistics and may not reflect real-time conditions. Contact local authorities for the most current information.",
+    "lastUpdated": "Last updated",
+    "liveMonitoring": "Live Monitoring Resources",
+    "viewData": "View Data",
+    "status": {
+      "critical": "Critical",
+      "high": "High Need",
+      "moderate": "Moderate",
+      "low": "Stable"
+    }
   }
 }
 
