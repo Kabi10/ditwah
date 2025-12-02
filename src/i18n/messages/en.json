@@ -56,7 +56,15 @@
     "lastSeen": "Last seen",
     "age_years": "years old",
     "lastSeenDate": "Last Seen Date",
-    "clearFilters": "Clear Filters"
+    "clearFilters": "Clear Filters",
+    "whatAreYouDoing": "What are you looking for?",
+    "lookingForSomeone": "I'm looking for someone",
+    "lookingForSomeoneDesc": "Search our database of reported missing persons",
+    "haveInfoAboutSomeone": "I have information about someone",
+    "haveInfoAboutSomeoneDesc": "I saw someone or have info to share",
+    "infoModeHint": "If you've seen a missing person or have information about someone, please report it. Your information could help reunite families.",
+    "reportFoundPerson": "Report Found Person",
+    "reportSighting": "Report a Sighting"
   },
   "report": {
     "title": "Report Missing Person",

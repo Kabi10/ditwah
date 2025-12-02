@@ -2,7 +2,7 @@ import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 import {
   Search, UserPlus, CheckCircle, Phone, AlertTriangle,
-  Tent, Heart, ArrowRight, Clock, MapPin, ExternalLink
+  Tent, Heart, ArrowRight, Clock, MapPin, ExternalLink, Eye
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { QuickSearch } from '@/components/home/QuickSearch'
@@ -141,19 +141,36 @@ export default async function Home() {
                 <ArrowRight className="w-5 h-5 opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition" />
               </Link>
 
-              <Link
-                href="/search"
-                className="flex items-center justify-between w-full p-4 bg-slate-100 hover:bg-slate-200 text-slate-900 rounded-lg transition group border border-slate-200"
-              >
-                <div className="flex items-center gap-3">
-                  <Search className="w-6 h-6 text-slate-600" />
-                  <div>
-                    <div className="font-semibold">{t('viewAll')}</div>
-                    <div className="text-slate-600 text-sm">{t('searchDesc')}</div>
+              {/* Two-Way Search Actions - Based on Google Person Finder's dual-mode approach */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <Link
+                  href="/search?mode=looking"
+                  className="flex items-center justify-between w-full p-4 bg-slate-100 hover:bg-slate-200 text-slate-900 rounded-lg transition group border-2 border-slate-200 hover:border-blue-400"
+                >
+                  <div className="flex items-center gap-3">
+                    <Search className="w-6 h-6 text-blue-600" />
+                    <div>
+                      <div className="font-semibold">I&apos;m Looking For Someone</div>
+                      <div className="text-slate-600 text-xs">Search reported missing persons</div>
+                    </div>
                   </div>
-                </div>
-                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-1 transition" />
-              </Link>
+                  <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition" />
+                </Link>
+
+                <Link
+                  href="/search?mode=info"
+                  className="flex items-center justify-between w-full p-4 bg-slate-100 hover:bg-slate-200 text-slate-900 rounded-lg transition group border-2 border-slate-200 hover:border-amber-400"
+                >
+                  <div className="flex items-center gap-3">
+                    <Eye className="w-6 h-6 text-amber-600" />
+                    <div>
+                      <div className="font-semibold">I Have Information</div>
+                      <div className="text-slate-600 text-xs">Report a sighting or found person</div>
+                    </div>
+                  </div>
+                  <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-amber-600 group-hover:translate-x-1 transition" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>

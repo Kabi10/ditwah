@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server'
 import { createClient } from '@/lib/supabase/server'
 import { SearchFilters } from '@/components/search/SearchFilters'
 import { SearchResults } from '@/components/search/SearchResults'
+import { TwoWaySearchWrapper } from '@/components/search/TwoWaySearchWrapper'
 import { DISTRICTS } from '@/lib/supabase/types'
 
 interface SearchPageProps {
@@ -13,6 +14,7 @@ interface SearchPageProps {
     maxAge?: string
     dateFrom?: string
     dateTo?: string
+    mode?: 'looking' | 'info'
   }>
 }
 
@@ -20,6 +22,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const t = await getTranslations('search')
   const params = await searchParams
   const supabase = await createClient()
+  const mode = params.mode || 'looking'
 
   // Build query
   let query = supabase
@@ -32,19 +35,19 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   if (params.q) {
     query = query.ilike('full_name', `%${params.q}%`)
   }
-  
+
   if (params.district && params.district !== 'all') {
     query = query.eq('district', params.district)
   }
-  
+
   if (params.status && params.status !== 'all') {
     query = query.eq('status', params.status)
   }
-  
+
   if (params.minAge) {
     query = query.gte('age', parseInt(params.minAge))
   }
-  
+
   if (params.maxAge) {
     query = query.lte('age', parseInt(params.maxAge))
   }
@@ -62,8 +65,11 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">{t('title')}</h1>
-        
+        <h1 className="text-3xl font-bold text-gray-900 mb-6">{t('title')}</h1>
+
+        {/* Two-Way Search Selector - Based on Google Person Finder's dual-mode */}
+        <TwoWaySearchWrapper initialMode={mode} />
+
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Filters Sidebar */}
           <aside className="lg:col-span-1">
@@ -83,8 +89,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
           {/* Results */}
           <main className="lg:col-span-3">
-            <SearchResults 
-              persons={persons || []} 
+            <SearchResults
+              persons={persons || []}
               error={error?.message}
               query={params.q}
             />
