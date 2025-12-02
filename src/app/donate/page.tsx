@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 import { Metadata } from 'next'
-import { ExternalLink, Shield, Building2, Heart, AlertCircle, CheckCircle2, Landmark, Copy } from 'lucide-react'
+import { ExternalLink, Shield, Building2, Heart, AlertCircle, CheckCircle2, Landmark, ShieldCheck, Lock, FileCheck } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Donate to Cyclone Ditwah Relief | Official Government Funds',
@@ -61,6 +61,35 @@ export default async function DonatePage() {
         </div>
       </section>
 
+      {/* Trust Verification Banner */}
+      <section className="py-6 px-4 bg-green-50 border-b border-green-200">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid sm:grid-cols-3 gap-4">
+            <div className="flex items-center gap-3 p-3 bg-white rounded-lg border border-green-200">
+              <ShieldCheck className="w-8 h-8 text-green-600 flex-shrink-0" />
+              <div>
+                <div className="font-semibold text-green-800 text-sm">{t('governmentVerified')}</div>
+                <div className="text-xs text-green-600">{t('directToTreasury')}</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-3 bg-white rounded-lg border border-green-200">
+              <Lock className="w-8 h-8 text-green-600 flex-shrink-0" />
+              <div>
+                <div className="font-semibold text-green-800 text-sm">{t('securePayment')}</div>
+                <div className="text-xs text-green-600">{t('sslEncrypted')}</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-3 bg-white rounded-lg border border-green-200">
+              <FileCheck className="w-8 h-8 text-green-600 flex-shrink-0" />
+              <div>
+                <div className="font-semibold text-green-800 text-sm">{t('auditedFunds')}</div>
+                <div className="text-xs text-green-600">{t('lastAudit')}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Government Funds */}
       <section className="py-12 px-4">
         <div className="max-w-4xl mx-auto">
@@ -75,7 +104,7 @@ export default async function DonatePage() {
                 href={fund.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-start gap-4 p-6 bg-white rounded-xl border border-gray-200 hover:border-green-300 hover:shadow-md transition"
+                className="flex items-start gap-4 p-6 bg-white rounded-xl border-l-4 border-l-green-500 border border-gray-200 hover:border-green-300 hover:shadow-md transition"
               >
                 <Shield className="w-10 h-10 text-green-600 flex-shrink-0" />
                 <div className="flex-1">
@@ -89,9 +118,13 @@ export default async function DonatePage() {
                     )}
                   </div>
                   <p className="text-gray-600 text-sm mb-2">{fund.description}</p>
-                  <span className="text-green-600 text-sm flex items-center gap-1">
-                    {t('donateNow')} <ExternalLink className="w-4 h-4" />
-                  </span>
+                  <div className="flex items-center gap-4 text-sm">
+                    <span className="text-green-600 flex items-center gap-1">
+                      {t('donateNow')} <ExternalLink className="w-4 h-4" />
+                    </span>
+                    <span className="text-gray-400">|</span>
+                    <span className="text-gray-500 text-xs">{t('fundsReachBeneficiaries')}</span>
+                  </div>
                 </div>
               </a>
             ))}

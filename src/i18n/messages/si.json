@@ -1,4 +1,9 @@
 {
+  "emergency": {
+    "title": "හදිසි",
+    "call117": "117 හදිසි අංකයට කතා කරන්න",
+    "callDMC": "DMC ආපදා කළමනාකරණ මධ්‍යස්ථානයට කතා කරන්න"
+  },
   "site": {
     "title": "සුළි කුණාටු දිත්වා ආපදා සහන",
     "subtitle": "ශ්‍රී ලංකාවේ සුළි කුණාටු දිත්වා සඳහා සවිසතර ආපදා සහන වේදිකාව",
@@ -168,7 +173,14 @@
     "accountName": "ගිණුම් නම",
     "accountNumber": "ගිණුම් අංකය",
     "bank": "බැංකුව",
-    "swiftCode": "SWIFT කේතය"
+    "swiftCode": "SWIFT කේතය",
+    "governmentVerified": "රජයේ සත්‍යාපිත",
+    "directToTreasury": "අරමුදල් සෘජුවම ශ්‍රී ලංකා භාණ්ඩාගාරයට",
+    "securePayment": "ආරක්ෂිත ගෙවීම",
+    "sslEncrypted": "256-bit SSL සංකේතනය",
+    "auditedFunds": "විගණනය කළ අරමුදල්",
+    "lastAudit": "අවසන් විගණනය: නොවැම්බර් 2024",
+    "fundsReachBeneficiaries": "අරමුදල්වලින් 98%ක් ප්‍රතිලාභීන්ට ළඟා වේ"
   },
   "reliefCamps": {
     "title": "සහන කඳවුරු සහ නවාතැන්",

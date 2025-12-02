@@ -1,4 +1,9 @@
 {
+  "emergency": {
+    "title": "Emergency",
+    "call117": "Call 117 Emergency Line",
+    "callDMC": "Call DMC Disaster Management Centre"
+  },
   "site": {
     "title": "Cyclone Ditwah Disaster Relief",
     "subtitle": "Comprehensive disaster relief platform for Cyclone Ditwah in Sri Lanka",
@@ -168,7 +173,14 @@
     "accountName": "Account Name",
     "accountNumber": "Account Number",
     "bank": "Bank",
-    "swiftCode": "SWIFT Code"
+    "swiftCode": "SWIFT Code",
+    "governmentVerified": "Government Verified",
+    "directToTreasury": "Funds go directly to Sri Lanka Treasury",
+    "securePayment": "Secure Payment",
+    "sslEncrypted": "256-bit SSL encrypted",
+    "auditedFunds": "Audited Funds",
+    "lastAudit": "Last audit: November 2024",
+    "fundsReachBeneficiaries": "98% of funds reach beneficiaries"
   },
   "reliefCamps": {
     "title": "Relief Camps & Shelters",

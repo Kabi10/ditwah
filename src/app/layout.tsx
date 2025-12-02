@@ -6,6 +6,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { EmergencyBanner } from "@/components/layout/EmergencyBanner";
+import { StickyEmergencyHeader } from "@/components/layout/StickyEmergencyHeader";
 import { SetupBanner } from "@/components/layout/SetupBanner";
 import { isSupabaseConfigured } from "@/lib/supabase/server";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
@@ -139,9 +140,10 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="antialiased min-h-screen flex flex-col">
+      <body className="antialiased min-h-screen flex flex-col pt-10">
         <GoogleAnalytics />
         <NextIntlClientProvider messages={messages}>
+          <StickyEmergencyHeader />
           <Suspense fallback={null}>
             <Analytics />
           </Suspense>
