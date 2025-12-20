@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Cloud, AlertCircle, Newspaper, ArrowRight, ExternalLink, Thermometer, Wind, CloudRain } from 'lucide-react'
+import { Cloud, AlertCircle, Newspaper, ArrowRight, ExternalLink, Thermometer, Wind, CloudRain, Activity } from 'lucide-react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 
@@ -51,7 +51,22 @@ export function LiveUpdates() {
         )
     }
 
-    if (!updates) return null
+    if (!updates) {
+        return (
+            <div className="bg-white rounded-xl shadow-sm border p-8 text-center">
+                <div className="inline-flex p-3 bg-blue-50 rounded-full mb-4">
+                    <Activity className="w-6 h-6 text-blue-600 animate-pulse" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-1">Live Dashboard Initializing</h3>
+                <p className="text-slate-600 text-sm max-w-sm mx-auto">
+                    We're currently fetching the latest weather, alerts, and news for Sri Lanka. Please check back in a few minutes.
+                </p>
+                <Link href="/emergency-contacts" className="inline-flex items-center gap-2 text-blue-600 font-semibold text-sm mt-4 hover:underline">
+                    View Emergency Contacts <ArrowRight className="w-4 h-4" />
+                </Link>
+            </div>
+        )
+    }
 
     const weather = updates.weather_data
     const alerts = updates.alerts || []

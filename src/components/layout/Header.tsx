@@ -126,6 +126,14 @@ export function Header() {
                 <CheckCircle className="w-4 h-4" />
                 {t('found')}
               </NavLink>
+              <NavLink
+                href="/im-safe"
+                className={`${buttonBase} bg-indigo-600 text-white hover:bg-indigo-700 focus-visible:ring-indigo-500`}
+                activeClassName="ring-2 ring-indigo-300 ring-offset-1"
+              >
+                <CheckCircle className="w-4 h-4" />
+                I am Safe
+              </NavLink>
             </div>
           </nav>
 
@@ -223,6 +231,15 @@ export function Header() {
               >
                 <CheckCircle className="w-5 h-5" />
                 <span className="text-base font-medium">{t('found')}</span>
+              </NavLink>
+              <NavLink
+                href="/im-safe"
+                className="flex items-center gap-3 px-4 py-3 min-h-[44px] text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg active:bg-indigo-800 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-indigo-300"
+                activeClassName="ring-2 ring-indigo-300"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <CheckCircle className="w-5 h-5" />
+                <span className="text-base font-medium">I am Safe</span>
               </NavLink>
             </div>
           </nav>

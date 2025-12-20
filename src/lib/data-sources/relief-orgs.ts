@@ -28,7 +28,11 @@ export async function getLatestReliefReports(limit = 10): Promise<ReliefWebRepor
     })
 
     try {
-        const response = await fetch(`${RELIEFWEB_API}/reports?${params.toString()}`)
+        const response = await fetch(`${RELIEFWEB_API}/reports?${params.toString()}`, {
+            headers: {
+                'User-Agent': 'Ditwah-Relief-App/1.0 (https://ditwah.com)'
+            }
+        })
 
         if (!response.ok) {
             console.error('ReliefWeb API error:', response.statusText)
@@ -67,7 +71,11 @@ export async function getSevereAlerts(): Promise<ReliefWebReport[]> {
     })
 
     try {
-        const response = await fetch(`${RELIEFWEB_API}/reports?${params.toString()}`)
+        const response = await fetch(`${RELIEFWEB_API}/reports?${params.toString()}`, {
+            headers: {
+                'User-Agent': 'Ditwah-Relief-App/1.0 (https://ditwah.com)'
+            }
+        })
         if (!response.ok) return []
         const data = await response.json()
 

@@ -9,6 +9,7 @@ import { createClient } from '@/lib/supabase/server'
 import { QuickSearch } from '@/components/home/QuickSearch'
 import { RecentMissing } from '@/components/home/RecentMissing'
 import { LiveUpdates } from '@/components/home/LiveUpdates'
+import RecoveryCenter from '@/components/home/RecoveryCenter'
 
 async function getStats() {
   const supabase = await createClient()
@@ -170,73 +171,80 @@ export default async function Home() {
       </section>
 
       {/* Unified Statistics Dashboard */}
-      <section className="bg-slate-800 text-white py-6 border-b border-slate-700">
+      <section className="bg-slate-900 text-white py-10 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4">
-          {/* Critical Missing Stats - Most Prominent */}
-          <div className="mb-6 p-4 bg-gradient-to-r from-red-900/50 to-slate-800 rounded-lg border border-red-700/50">
-            <div className="flex items-center gap-2 mb-3">
-              <AlertTriangle className="w-5 h-5 text-red-400" />
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-red-300">
-                Missing Persons Status
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+            <div>
+              <h2 className="text-amber-500 font-bold uppercase tracking-widest text-xs mb-2 flex items-center gap-2">
+                <Activity className="w-4 h-4" />
+                Live Crisis Impact
               </h2>
+              <h1 className="text-2xl md:text-3xl font-extrabold text-white">Cyclone Ditwah Situation Report</h1>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="text-center p-3 bg-red-950/50 rounded-lg">
-                <div className="text-3xl md:text-4xl font-bold text-red-400">{crisisStats.deaths}</div>
-                <div className="text-xs text-red-300 mt-1">Confirmed Deaths</div>
-                <div className="text-xs text-slate-500">Official DMC</div>
-              </div>
-              <div className="text-center p-3 bg-amber-950/50 rounded-lg">
-                <div className="text-3xl md:text-4xl font-bold text-amber-400">{crisisStats.stillMissing}</div>
-                <div className="text-xs text-amber-300 mt-1">Still Missing</div>
-                <div className="text-xs text-slate-500">Official DMC</div>
-              </div>
-              <div className="text-center p-3 bg-slate-700/50 rounded-lg border border-slate-600">
-                <div className="text-2xl md:text-3xl font-bold text-white">{stats.missing}</div>
-                <div className="text-xs text-slate-300 mt-1">Registered Here</div>
-                <div className="text-xs text-blue-400">This Platform</div>
-              </div>
-              <div className="text-center p-3 bg-slate-700/50 rounded-lg border border-slate-600">
-                <div className="text-2xl md:text-3xl font-bold text-green-400">
-                  {stats.found > 0 ? stats.found : <span className="text-slate-400 text-lg">—</span>}
-                </div>
-                <div className="text-xs text-slate-300 mt-1">{stats.found > 0 ? 'Found Safe' : 'Reunification in Progress'}</div>
-                <div className="text-xs text-blue-400">This Platform</div>
+            <div className="text-right">
+              <span className="text-xs text-slate-500 block mb-1">Last Official Sync</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-800 rounded-full border border-slate-700 text-xs text-slate-300">
+                <Clock className="w-3 h-3 text-amber-500" />
+                {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
               </div>
             </div>
           </div>
 
-          {/* General Impact Stats */}
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-400">
-              Cyclone Ditwah Impact Summary
-            </h2>
-            <span className="text-xs text-slate-500">Source: DMC Sri Lanka</span>
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+            {/* Primary Impact Stats */}
+            <div className="p-5 bg-red-950/30 rounded-2xl border border-red-900/50 flex flex-col justify-center transition hover:bg-red-900/40">
+              <div className="text-red-400 font-bold text-3xl md:text-4xl">{crisisStats.deaths}</div>
+              <div className="text-xs text-red-300 font-medium uppercase mt-1">Confirmed Loss</div>
+            </div>
+
+            <div className="p-5 bg-amber-950/30 rounded-2xl border border-amber-900/50 flex flex-col justify-center transition hover:bg-amber-900/40">
+              <div className="text-amber-400 font-bold text-3xl md:text-4xl">{crisisStats.stillMissing}</div>
+              <div className="text-xs text-amber-300 font-medium uppercase mt-1">Active Search</div>
+            </div>
+
+            <div className="p-5 bg-white/5 rounded-2xl border border-white/10 flex flex-col justify-center transition hover:bg-white/10">
+              <div className="text-white font-bold text-2xl md:text-3xl">{crisisStats.affected}</div>
+              <div className="text-xs text-slate-400 font-medium uppercase mt-1">Total Affected</div>
+            </div>
+
+            <div className="p-5 bg-white/5 rounded-2xl border border-white/10 flex flex-col justify-center transition hover:bg-white/10">
+              <div className="text-blue-400 font-bold text-2xl md:text-3xl">{crisisStats.sheltered}</div>
+              <div className="text-xs text-slate-400 font-medium uppercase mt-1">In Shelters</div>
+            </div>
+
+            <div className="p-5 bg-blue-900/20 rounded-2xl border border-blue-800/50 col-span-2 lg:col-span-1 flex flex-col justify-center transition hover:bg-blue-800/30">
+              <div className="text-blue-300 font-bold text-2xl md:text-3xl">{stats.missing}</div>
+              <div className="text-xs text-blue-200 font-medium uppercase mt-1">Registered Here</div>
+            </div>
           </div>
-          <div className="grid grid-cols-4 gap-4">
-            <div className="text-center">
-              <div className="text-xl md:text-2xl font-bold text-white">{crisisStats.affected}</div>
-              <div className="text-xs text-slate-400">People Affected</div>
+
+          <div className="mt-6 flex flex-wrap items-center gap-6 pt-6 border-t border-slate-800/50 text-[10px] uppercase font-bold tracking-widest text-slate-500">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+              Real-time Monitoring
             </div>
-            <div className="text-center">
-              <div className="text-xl md:text-2xl font-bold text-amber-400">{crisisStats.sheltered}</div>
-              <div className="text-xs text-slate-400">Sheltered</div>
+            <div className="flex items-center gap-2">
+              <Building2 className="w-3 h-3" />
+              {crisisStats.safetyCentres} Safety Centres Active
             </div>
-            <div className="text-center">
-              <div className="text-xl md:text-2xl font-bold text-blue-400">{crisisStats.safetyCentres.toLocaleString()}</div>
-              <div className="text-xs text-slate-400">Safety Centres</div>
-            </div>
-            <div className="text-center">
-              <div className="text-xl md:text-2xl font-bold text-orange-400">{crisisStats.districts}</div>
-              <div className="text-xs text-slate-400">Districts</div>
+            <div className="flex items-center gap-2">
+              <MapPin className="w-3 h-3" />
+              {crisisStats.districts} Impacted Districts
             </div>
           </div>
         </div>
       </section>
 
       {/* Live Situation Dashboard - NEW */}
-      <section className="max-w-7xl mx-auto px-4 mt-[-2rem] relative z-10 mb-8">
+      <section className="max-w-7xl mx-auto px-4 py-8 relative z-10">
+        <div className="flex items-center gap-2 mb-4">
+          <TrendingUp className="w-5 h-5 text-blue-600" />
+          <h2 className="text-xl font-bold text-gray-900 leading-tight">National Situation Dashboard</h2>
+        </div>
         <LiveUpdates />
+
+        {/* Recovery Phase Command Center - Consolidated Pillars 1-4 */}
+        <RecoveryCenter />
       </section>
 
       {/* Quick Services Grid */}
@@ -460,6 +468,27 @@ export default async function Home() {
           </div>
         </div>
       </section>
+      {/* Floating Emergency SOS - High Visibility */}
+      <div className="fixed bottom-6 right-6 z-50 animate-bounce hover:animate-none group">
+        <a
+          href="https://floodsupport.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 bg-red-600 text-white px-6 py-4 rounded-full shadow-2xl hover:bg-red-700 transition transform hover:scale-105 active:scale-95 border-2 border-white/20"
+        >
+          <div className="bg-white/20 p-1.5 rounded-full">
+            <AlertTriangle className="w-6 h-6" />
+          </div>
+          <div className="flex flex-col items-start leading-none">
+            <span className="text-[10px] font-bold uppercase tracking-wider opacity-80">Urgent Help</span>
+            <span className="text-lg font-black tracking-tight">SOS RESCUE</span>
+          </div>
+        </a>
+        <div className="absolute bottom-full right-0 mb-3 w-48 bg-slate-900 text-white p-3 rounded-xl text-[10px] font-medium shadow-xl opacity-0 group-hover:opacity-100 transition pointer-events-none transform translate-y-2 group-hover:translate-y-0">
+          Click here for immediate water rescue, medical emergency or evacuation support.
+          <div className="absolute top-full right-6 w-2 h-2 bg-slate-900 transform rotate-45 -translate-y-1"></div>
+        </div>
+      </div>
     </div>
   )
 }
