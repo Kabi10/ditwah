@@ -13,7 +13,7 @@ import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { Analytics } from "@/components/analytics/Analytics";
 import { OfflineIndicator } from "@/components/pwa/OfflineIndicator";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://cyclone-ditwah-missing-persons.vercel.app';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ditwah.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
