@@ -78,12 +78,12 @@ export default async function RootLayout({
   const locale = await getLocale();
   const messages = await getMessages();
 
-  // JSON-LD Structured Data
+  // JSON-LD Structured Data - Enhanced for Rich Snippets
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'Organization',
+        '@type': ['Organization', 'EmergencyService'],
         '@id': `${siteUrl}/#organization`,
         name: 'Cyclone Ditwah Disaster Relief',
         url: siteUrl,
@@ -92,6 +92,12 @@ export default async function RootLayout({
         areaServed: {
           '@type': 'Country',
           name: 'Sri Lanka',
+        },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          telephone: '+94-117',
+          contactType: 'emergency',
+          availableLanguage: ['English', 'Sinhala', 'Tamil'],
         },
       },
       {
@@ -132,8 +138,61 @@ export default async function RootLayout({
           },
         ],
       },
+      // Event Schema for the Disaster
+      {
+        '@type': 'Event',
+        name: 'Cyclone Ditwah Disaster Relief Operations',
+        description: 'Ongoing disaster relief and recovery operations following Cyclone Ditwah in Sri Lanka',
+        startDate: '2025-11-27',
+        eventStatus: 'https://schema.org/EventScheduled',
+        eventAttendanceMode: 'https://schema.org/MixedEventAttendanceMode',
+        location: {
+          '@type': 'Country',
+          name: 'Sri Lanka',
+        },
+        organizer: { '@id': `${siteUrl}/#organization` },
+      },
+      // FAQ Schema for Rich Snippets
+      {
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'How do I report a missing person after Cyclone Ditwah?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Visit ditwah.com/report to submit a missing person report with photo, last known location, and contact details. Reports are immediately published and searchable.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'Where can I find relief camps near me in Sri Lanka?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Visit ditwah.com/relief-camps to find all 1,094+ active safety centers across 14 affected districts. Filter by district to find camps nearest to you.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'How do I register myself as safe after the cyclone?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Use the "I am Safe" feature at ditwah.com/im-safe to register your safety status. Your family can then search for you on our platform.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'How can I donate to Cyclone Ditwah relief efforts?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Visit ditwah.com/donate for verified donation portals including the official government portal donate.gov.lk and Sri Lanka Red Cross.',
+            },
+          },
+        ],
+      },
     ],
   };
+
 
   return (
     <html lang={locale}>
@@ -146,6 +205,17 @@ export default async function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="theme-color" content="#dc2626" />
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+
+        {/* Hreflang for Multilingual SEO (Sri Lanka) */}
+        <link rel="alternate" hrefLang="en" href={siteUrl} />
+        <link rel="alternate" hrefLang="si-LK" href={siteUrl} />
+        <link rel="alternate" hrefLang="ta-LK" href={siteUrl} />
+        <link rel="alternate" hrefLang="x-default" href={siteUrl} />
+
+        {/* Geo-targeting Meta Tags */}
+        <meta name="geo.region" content="LK" />
+        <meta name="geo.placename" content="Sri Lanka" />
+        <meta name="DC.language" content="en, si, ta" />
 
         {/* Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
