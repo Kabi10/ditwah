@@ -12,6 +12,26 @@ import { isSupabaseConfigured } from "@/lib/supabase/server";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { Analytics } from "@/components/analytics/Analytics";
 import { OfflineIndicator } from "@/components/pwa/OfflineIndicator";
+import { Inter, Noto_Sans_Sinhala, Noto_Sans_Tamil } from 'next/font/google';
+
+// Optimize Fonts with next/font (Self-hosted, no layout shift)
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const notoSinhala = Noto_Sans_Sinhala({
+  subsets: ['sinhala'],
+  display: 'swap',
+  variable: '--font-noto-sinhala',
+});
+
+const notoTamil = Noto_Sans_Tamil({
+  subsets: ['tamil'],
+  display: 'swap',
+  variable: '--font-noto-tamil',
+});
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ditwah.com';
 
@@ -195,7 +215,7 @@ export default async function RootLayout({
 
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={`${inter.variable} ${notoSinhala.variable} ${notoTamil.variable}`}>
       <head>
         {/* PWA Meta Tags */}
         <meta name="application-name" content="Ditwah" />
@@ -217,13 +237,7 @@ export default async function RootLayout({
         <meta name="geo.placename" content="Sri Lanka" />
         <meta name="DC.language" content="en, si, ta" />
 
-        {/* Fonts */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
+        {/* Fonts managed by next/font/google in layout.tsx */}
 
         {/* Structured Data */}
         <script
