@@ -162,6 +162,8 @@ BEGIN
   WHERE similarity(mp.full_name, search_name) > threshold
   ORDER BY sim DESC;
 END;
+$$ LANGUAGE plpgsql;
+
 -- Automatic matching trigger
 CREATE OR REPLACE FUNCTION trigger_find_matches()
 RETURNS TRIGGER AS $$
