@@ -1,13 +1,14 @@
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 import {
-  Search, UserPlus, AlertTriangle,
+  Search, UserPlus, AlertTriangle, CheckCircle,
   Tent, Heart, ArrowRight, Clock, MapPin, ExternalLink, Eye,
-  TrendingUp, Activity
+  TrendingUp, Activity, Building2, Phone
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { QuickSearch } from '@/components/home/QuickSearch'
 import { RecentMissing } from '@/components/home/RecentMissing'
+import { LiveUpdates } from '@/components/home/LiveUpdates'
 
 async function getStats() {
   const supabase = await createClient()
@@ -138,6 +139,23 @@ export default async function Home() {
                 <ArrowRight className="w-6 h-6 opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition" />
               </Link>
 
+              {/* Primary CTA 3: Family Finder - I am Safe (Reassurance - Blue/Indigo) - NEW */}
+              <Link
+                href="/im-safe"
+                className="flex items-center justify-between w-full p-5 bg-gradient-to-r from-blue-600 to-indigo-500 hover:from-blue-700 hover:to-indigo-600 text-white rounded-xl transition group shadow-lg shadow-blue-500/20"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="p-2 bg-white/20 rounded-lg">
+                    <CheckCircle className="w-7 h-7" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-lg">Family Finder: I am Safe</div>
+                    <div className="text-blue-100 text-sm">Register yourself as safe for families to see</div>
+                  </div>
+                </div>
+                <ArrowRight className="w-6 h-6 opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition" />
+              </Link>
+
               {/* Secondary: Search Link */}
               <Link
                 href="/search"
@@ -216,25 +234,66 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Live Situation Dashboard - NEW */}
+      <section className="max-w-7xl mx-auto px-4 mt-[-2rem] relative z-10 mb-8">
+        <LiveUpdates />
+      </section>
+
       {/* Quick Services Grid */}
       <section className="bg-white py-8 border-b">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Relief Resources - NEW */}
+            <Link
+              href="/resources"
+              className="flex items-start gap-4 p-5 rounded-xl border-2 border-slate-200 hover:border-blue-400 hover:bg-blue-50 transition group shadow-sm"
+            >
+              <div className="p-3 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition">
+                <Building2 className="w-6 h-6 text-blue-600" />
+              </div>
+              <div>
+                <h3 className="font-bold text-slate-900 text-lg">{t('resources')}</h3>
+                <p className="text-sm text-slate-600 mt-1">{t('resourcesDesc')}</p>
+                <div className="mt-3 flex items-center gap-2">
+                  <span className="inline-flex items-center px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs font-semibold">
+                    Live Locator
+                  </span>
+                </div>
+              </div>
+            </Link>
+
             {/* Relief Camps */}
             <Link
               href="/relief-camps"
-              className="flex items-start gap-4 p-4 rounded-lg border-2 border-slate-200 hover:border-orange-400 hover:bg-orange-50 transition group"
+              className="flex items-start gap-4 p-5 rounded-xl border-2 border-slate-200 hover:border-orange-400 hover:bg-orange-50 transition group shadow-sm"
             >
-              <div className="p-2 bg-orange-100 rounded group-hover:bg-orange-200 transition">
-                <Tent className="w-5 h-5 text-orange-600" />
+              <div className="p-3 bg-orange-100 rounded-lg group-hover:bg-orange-200 transition">
+                <Tent className="w-6 h-6 text-orange-600" />
               </div>
               <div>
-                <h3 className="font-semibold text-slate-900">{t('reliefCamps')}</h3>
-                <p className="text-sm text-slate-600 mt-0.5">{t('reliefCampsDesc')}</p>
-                <div className="mt-2 flex items-center gap-2">
+                <h3 className="font-bold text-slate-900 text-lg">{t('reliefCamps')}</h3>
+                <p className="text-sm text-slate-600 mt-1">{t('reliefCampsDesc')}</p>
+                <div className="mt-3 flex items-center gap-2">
                   <span className="text-xs font-medium text-orange-600">
-                    {crisisStats.safetyCentres.toLocaleString()} active centres
+                    {crisisStats.safetyCentres.toLocaleString()} Active shelters
                   </span>
+                </div>
+              </div>
+            </Link>
+
+            {/* Emergency Contacts - NEW */}
+            <Link
+              href="/emergency-contacts"
+              className="flex items-start gap-4 p-5 rounded-xl border-2 border-slate-200 hover:border-red-400 hover:bg-red-50 transition group shadow-sm"
+            >
+              <div className="p-3 bg-red-100 rounded-lg group-hover:bg-red-200 transition">
+                <Phone className="w-6 h-6 text-red-600" />
+              </div>
+              <div>
+                <h3 className="font-bold text-slate-900 text-lg">{t('emergencyContacts')}</h3>
+                <p className="text-sm text-slate-600 mt-1">{t('emergencyContactsDesc')}</p>
+                <div className="mt-3 flex items-center gap-2 text-xs font-bold text-red-600">
+                  Dial 117 for Immediate Help
                 </div>
               </div>
             </Link>
@@ -242,39 +301,39 @@ export default async function Home() {
             {/* Donate */}
             <Link
               href="/donate"
-              className="flex items-start gap-4 p-4 rounded-lg border-2 border-slate-200 hover:border-green-400 hover:bg-green-50 transition group"
+              className="flex items-start gap-4 p-5 rounded-xl border-2 border-slate-200 hover:border-green-400 hover:bg-green-50 transition group shadow-sm"
             >
-              <div className="p-2 bg-green-100 rounded group-hover:bg-green-200 transition">
-                <Heart className="w-5 h-5 text-green-600" />
+              <div className="p-3 bg-green-100 rounded-lg group-hover:bg-green-200 transition">
+                <Heart className="w-6 h-6 text-green-600" />
               </div>
               <div>
-                <h3 className="font-semibold text-slate-900">{t('donate')}</h3>
-                <p className="text-sm text-slate-600 mt-0.5">{t('donateDesc')}</p>
-                <div className="mt-2 flex items-center gap-2">
-                  <span className="inline-flex items-center px-1.5 py-0.5 bg-green-100 text-green-700 rounded text-xs font-medium">
-                    ✓ Verified
+                <h3 className="font-bold text-slate-900 text-lg">{t('donate')}</h3>
+                <p className="text-sm text-slate-600 mt-1">{t('donateDesc')}</p>
+                <div className="mt-3 flex items-center gap-2">
+                  <span className="inline-flex items-center px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs font-semibold">
+                    ✓ Verified Portals
                   </span>
                 </div>
               </div>
             </Link>
 
-            {/* Emergency SOS */}
+            {/* Emergency SOS - External */}
             <a
               href="https://floodsupport.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-4 p-4 rounded-lg border-2 border-red-200 bg-red-50 hover:border-red-400 transition group"
+              className="flex items-start gap-4 p-5 rounded-xl border-2 border-red-200 bg-red-50 hover:border-red-400 transition group shadow-sm"
             >
-              <div className="p-2 bg-red-200 rounded group-hover:bg-red-300 transition">
-                <AlertTriangle className="w-5 h-5 text-red-700" />
+              <div className="p-3 bg-red-200 rounded-lg group-hover:bg-red-300 transition">
+                <AlertTriangle className="w-6 h-6 text-red-700" />
               </div>
               <div>
-                <h3 className="font-semibold text-slate-900 flex items-center gap-2">
+                <h3 className="font-bold text-slate-900 text-lg flex items-center gap-2">
                   Emergency SOS
                   <ExternalLink className="w-3 h-3 text-slate-400" />
                 </h3>
-                <p className="text-sm text-slate-600 mt-0.5">Request rescue or urgent help</p>
-                <div className="mt-2 text-xs font-medium text-red-600">
+                <p className="text-sm text-slate-600 mt-1">Request urgent rescue or medical help</p>
+                <div className="mt-3 text-xs font-bold text-red-600">
                   floodsupport.org
                 </div>
               </div>
@@ -283,17 +342,17 @@ export default async function Home() {
             {/* Search All Missing */}
             <Link
               href="/search"
-              className="flex items-start gap-4 p-4 rounded-lg border-2 border-slate-200 hover:border-blue-400 hover:bg-blue-50 transition group"
+              className="flex items-start gap-4 p-5 rounded-xl border-2 border-slate-200 hover:border-blue-400 hover:bg-blue-50 transition group shadow-sm"
             >
-              <div className="p-2 bg-blue-100 rounded group-hover:bg-blue-200 transition">
-                <Search className="w-5 h-5 text-blue-600" />
+              <div className="p-3 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition">
+                <Search className="w-6 h-6 text-blue-600" />
               </div>
               <div>
-                <h3 className="font-semibold text-slate-900">{t('viewAll')}</h3>
-                <p className="text-sm text-slate-600 mt-0.5">{t('searchDesc')}</p>
-                <div className="mt-2 flex items-center gap-2">
+                <h3 className="font-bold text-slate-900 text-lg">{t('viewAll')}</h3>
+                <p className="text-sm text-slate-600 mt-1">{t('searchDesc')}</p>
+                <div className="mt-3 flex items-center gap-2">
                   <span className="text-xs font-medium text-blue-600">
-                    {stats.missing} cases registered
+                    {stats.missing} Cases registered
                   </span>
                 </div>
               </div>

@@ -18,6 +18,10 @@ export async function reportMissingPerson(formData: FormData) {
   const reporter_phone = formData.get('reporter_phone') as string
   const reporter_email = formData.get('reporter_email') as string
   const reporter_relationship = formData.get('reporter_relationship') as string
+  const nic_number = formData.get('nic_number') as string
+  const distinctive_marks = formData.get('distinctive_marks') as string
+  const clothing_description = formData.get('clothing_description') as string
+  const home_address = formData.get('home_address') as string
   const photo = formData.get('photo') as File | null
 
   // Validate required fields
@@ -76,6 +80,10 @@ export async function reportMissingPerson(formData: FormData) {
     reporter_phone,
     reporter_email: reporter_email || null,
     reporter_relationship: reporter_relationship || null,
+    nic_number: nic_number || null,
+    distinctive_marks: distinctive_marks || null,
+    clothing_description: clothing_description || null,
+    home_address: home_address || null,
     status: 'missing',
     is_verified: false,
     is_published: true, // Auto-publish for rapid response during crisis
@@ -93,15 +101,15 @@ export async function reportMissingPerson(formData: FormData) {
     return { success: false, message: `Failed to submit report: ${error.message || 'Unknown error'}. Please try again.` }
   }
 
-  return { 
-    success: true, 
-    message: 'Report submitted successfully. Our team will review it shortly.' 
+  return {
+    success: true,
+    message: 'Report submitted successfully. Our team will review it shortly.'
   }
 }
 
 export async function getMissingPerson(id: string) {
   const supabase = await createClient()
-  
+
   const { data, error } = await supabase
     .from('missing_persons')
     .select('*')
@@ -118,7 +126,7 @@ export async function getMissingPerson(id: string) {
 
 export async function getSightings(personId: string) {
   const supabase = await createClient()
-  
+
   const { data } = await supabase
     .from('sightings')
     .select('*')
@@ -126,5 +134,42 @@ export async function getSightings(personId: string) {
     .order('created_at', { ascending: false })
 
   return data || []
+}
+
+export async function reportFoundPerson(formData: FormData) {
+  const supabase = await createClient()
+
+  const full_name = formData.get('full_name') as string
+  const nic_number = formData.get('nic_number') as string
+  const district = formData.get('district') as string
+  const found_location = formData.get('found_location') as string
+  const notes = formData.get('notes') as string
+  const reporter_name = formData.get('reporter_name') as string
+  const reporter_phone = formData.get('reporter_phone') as string
+  const is_self = formData.get('is_self') === 'on'
+
+  const { error } = await supabase.from('missing_persons').insert({
+    full_name,
+    nic_number,
+    district,
+    last_seen_location: found_location || 'Unknown',
+    last_seen_date: new Date().toISOString().split('T')[0],
+    found_location,
+    found_date: new Date().toISOString().split('T')[0],
+    notes,
+    reporter_name,
+    reporter_phone,
+    reporter_relationship: is_self ? 'Self' : 'Helper',
+    status: 'found',
+    is_verified: false,
+    is_published: true
+  })
+
+  if (error) {
+    console.error('Registration error:', error)
+    return { success: false, message: 'Failed to register safety report.' }
+  }
+
+  return { success: true, message: 'Your safety report has been registered.' }
 }
 

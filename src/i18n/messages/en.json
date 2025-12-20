@@ -39,7 +39,11 @@
     "reliefCamps": "Relief Camps",
     "reliefCampsDesc": "Find shelters and relief services by district",
     "donate": "Donate",
-    "donateDesc": "Support verified relief efforts"
+    "donateDesc": "Support verified relief efforts",
+    "resources": "Relief Resources",
+    "resourcesDesc": "Find food, water, and medical aid points",
+    "emergencyContacts": "Emergency Contacts",
+    "emergencyContactsDesc": "National and district emergency hotlines"
   },
   "search": {
     "title": "Search Missing Persons",
@@ -90,7 +94,15 @@
     "removePhoto": "Remove photo",
     "photoAdded": "Photo added successfully",
     "physicalDescription": "Physical Description",
-    "physicalDescriptionHint": "Height, weight, clothing, distinguishing features...",
+    "physicalDescriptionHint": "Height, weight, distinguishing features...",
+    "distinctiveMarks": "Distinctive Marks",
+    "distinctiveMarksHint": "Tattoos, scars, birthmarks...",
+    "clothingDescription": "Clothing Description",
+    "clothingDescriptionHint": "What the person was wearing when last seen",
+    "nicNumber": "NIC Number / ID",
+    "nicNumberPlaceholder": "National ID card number if known",
+    "homeAddress": "Home Address",
+    "homeAddressPlaceholder": "Permanent residence address",
     "lastKnownLocation": "Last Known Location",
     "location": "Location Details",
     "locationPlaceholder": "e.g., Near Galle Face Green, Colombo",
@@ -263,4 +275,3 @@
     "dismiss": "Not now"
   }
 }
-

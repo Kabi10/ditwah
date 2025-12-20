@@ -107,9 +107,8 @@ export function ReportForm() {
     <form onSubmit={handleSubmit} className="space-y-8">
       {/* Result Message */}
       {result && (
-        <div className={`p-4 rounded-lg flex items-start gap-3 ${
-          result.success ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'
-        }`}>
+        <div className={`p-4 rounded-lg flex items-start gap-3 ${result.success ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'
+          }`}>
           {result.success ? (
             <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0" />
           ) : (
@@ -133,11 +132,10 @@ export function ReportForm() {
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
-            className={`border-2 border-dashed rounded-xl p-8 text-center transition ${
-              isDragging
-                ? 'border-blue-500 bg-blue-100'
-                : 'border-blue-300 hover:border-blue-400 hover:bg-blue-100/50'
-            }`}
+            className={`border-2 border-dashed rounded-xl p-8 text-center transition ${isDragging
+              ? 'border-blue-500 bg-blue-100'
+              : 'border-blue-300 hover:border-blue-400 hover:bg-blue-100/50'
+              }`}
           >
             <ImageIcon className="w-12 h-12 text-blue-400 mx-auto mb-4" />
             <p className="text-blue-800 font-medium mb-2">{t('dragDropPhoto')}</p>
@@ -261,6 +259,45 @@ export function ReportForm() {
             </select>
           </div>
 
+          {/* NIC Number - Optional */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              {t('nicNumber')} <span className="text-gray-400 text-xs">({t('optional')})</span>
+            </label>
+            <input
+              type="text"
+              name="nic_number"
+              placeholder={t('nicNumberPlaceholder')}
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+            />
+          </div>
+
+          {/* Clothing Description - Optional */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              {t('clothingDescription')} <span className="text-gray-400 text-xs">({t('optional')})</span>
+            </label>
+            <input
+              type="text"
+              name="clothing_description"
+              placeholder={t('clothingDescriptionHint')}
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+            />
+          </div>
+
+          {/* Distinctive Marks - Optional */}
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              {t('distinctiveMarks')} <span className="text-gray-400 text-xs">({t('optional')})</span>
+            </label>
+            <input
+              type="text"
+              name="distinctive_marks"
+              placeholder={t('distinctiveMarksHint')}
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+            />
+          </div>
+
           {/* Physical Description - Optional, collapsed by default */}
           <div className="md:col-span-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -284,6 +321,19 @@ export function ReportForm() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Home Address - Optional */}
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              {t('homeAddress')} <span className="text-gray-400 text-xs">({t('optional')})</span>
+            </label>
+            <input
+              type="text"
+              name="home_address"
+              placeholder={t('homeAddressPlaceholder')}
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+            />
+          </div>
+
           {/* District - Required */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">

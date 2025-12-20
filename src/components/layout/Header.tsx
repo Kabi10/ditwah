@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
-import { Search, UserPlus, CheckCircle, Menu, X, Heart, Tent } from 'lucide-react'
+import { Search, UserPlus, CheckCircle, Menu, X, Heart, Tent, Phone } from 'lucide-react'
 import { useState } from 'react'
 import { LanguageSwitcher } from './LanguageSwitcher'
 
@@ -82,6 +82,14 @@ export function Header() {
                 <Tent className="w-4 h-4" />
                 {t('reliefCamps')}
               </NavLink>
+              <NavLink
+                href="/emergency-contacts"
+                className={`${textLinkBase} ${textLinkInactive}`}
+                activeClassName={textLinkActive}
+              >
+                <Phone className="w-4 h-4" />
+                Emergency
+              </NavLink>
             </div>
 
             {/* Separator */}
@@ -152,6 +160,15 @@ export function Header() {
                   {t('browse')}
                 </span>
               </div>
+              <NavLink
+                href="/emergency-contacts"
+                className="flex items-center gap-3 px-4 py-3 min-h-[44px] text-red-600 bg-red-50 hover:bg-red-100 rounded-lg active:bg-red-200 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-red-500"
+                activeClassName="bg-red-100 font-bold"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Phone className="w-5 h-5" />
+                <span className="text-base font-bold">EMERGENCY HOTLINES</span>
+              </NavLink>
               <NavLink
                 href="/search"
                 className="flex items-center gap-3 px-4 py-3 min-h-[44px] text-gray-700 hover:bg-gray-100 rounded-lg active:bg-gray-200 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500"
