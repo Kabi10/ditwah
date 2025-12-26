@@ -4,6 +4,8 @@ import withPWAInit from 'next-pwa';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
+const SUPABASE_HOSTNAME = 'bercuuipenekhrxekcfx.supabase.co';
+
 // PWA Configuration for offline disaster relief access
 const withPWA = withPWAInit({
   dest: 'public',
@@ -26,7 +28,7 @@ const withPWA = withPWAInit({
     },
     {
       // Cache images from Supabase storage
-      urlPattern: /^https:\/\/bercuuipenekhrxekcfx\.supabase\.co\/storage\/.*/i,
+      urlPattern: new RegExp(`^https://${SUPABASE_HOSTNAME.replace(/\./g, '\\.')}/storage/.*`, 'i'),
       handler: 'CacheFirst',
       options: {
         cacheName: 'supabase-images',
@@ -38,7 +40,7 @@ const withPWA = withPWAInit({
     },
     {
       // Cache API responses with network-first strategy
-      urlPattern: /^https:\/\/bercuuipenekhrxekcfx\.supabase\.co\/rest\/.*/i,
+      urlPattern: new RegExp(`^https://${SUPABASE_HOSTNAME.replace(/\./g, '\\.')}/rest/.*`, 'i'),
       handler: 'NetworkFirst',
       options: {
         cacheName: 'supabase-api',
@@ -70,7 +72,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'bercuuipenekhrxekcfx.supabase.co',
+        hostname: SUPABASE_HOSTNAME,
         pathname: '/storage/v1/object/public/**',
       },
     ],

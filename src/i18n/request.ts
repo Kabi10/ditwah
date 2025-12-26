@@ -6,7 +6,7 @@ export type Locale = (typeof locales)[number]
 
 export default getRequestConfig(async () => {
   const cookieStore = await cookies()
-  const locale = (cookieStore.get('locale')?.value as Locale) || 'en'
+  const locale = (cookieStore.get('NEXT_LOCALE')?.value as Locale) || 'en'
 
   return {
     locale,
